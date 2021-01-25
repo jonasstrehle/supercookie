@@ -3,6 +3,11 @@
     <head>
         <meta charset="utf-8"/>
         <title>supercookie • workwise</title>
+        <meta name="description" content="Favicon as supercookies! Check out this cache-based fingerprinting method in our demonstration."/>
+        <meta name="keywords" content="JavaScript, Web, Fingerprinting, Favicons, Cache, Anonym, Security, Browser"/>
+        <meta name="author" content="Jonas Strehle"/>
+        <meta name="robots" content="noindex"/>
+
         <meta name="viewport" content="viewport-fit=cover, user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
@@ -878,6 +883,10 @@
                     Workwise • <i>supercookie</i> 
                 </h1>
                 
+                <div>📚 Please have a look at this <b>elaboration</b> from University of Illinois:
+                    <a href="https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf" target="_blank">https://www.cs.uic.edu</a>
+                </div>
+
                 <h3>
                     <a id="content-introduction" class="anchor" href="#content-introduction" aria-hidden="true">
                         <span class="octicon octicon-link"></span>
@@ -892,15 +901,22 @@
                 </blockquote>
 
                 
-                Browsers are the most widespread access medium that makes it incredibly easy for us humans to connect to the Word Wide Web.
+                Browsers are the most widespread access medium that makes it incredibly easy for us humans to connect to the <a href="https://en.wikipedia.org/wiki/World_Wide_Web" target="_blank">Word Wide Web</a>.<br>
                 Due to the constant development of the Internet, such as the continuous elaboration of new standards and features, the introduction of powerful APIs and further interfaces on the browser side, the possibilities for collecting and analyzing data have also significantly expanded over the last few decades!
-                First and foremost, there is nothing at all wrong with collecting data. Every one of us collects data, whether unconsciously in private everyday life or completely consciously in school or at work - collecting data, interpreting it and drawing conclusions is actually incredibly important!
                 <br>
-                With the advent of the WWW and the first online services, data collection also started to become interesting for the service providers, according to the motto - if I own a website on the Internet, I also want to know who is surfing it.
-                However, in most cases we as consumers only want to disclose as little as possible and only the data necessary for the intended service - in fact, my data is no one else's business.
-            
-                The above-mentioned further development of the WWW's capabilities has allowed data to be assigned to individual profiles, enabling the recognition of unique users and the ability to trace their browsing activities even across different pages - the method of "device fingerprinting".
-                Some known methods to assign a unique fingerprint to devices respectively browsers are hardware benchmarking, fingerprinting via Canvas and WebGL or the analysis of active browser extensions.
+                <br>
+                First and foremost, there is nothing at all wrong with collecting data. We all collect data, whether unconsciously in private everyday life or completely consciously in school or at work - collecting data, interpreting it and drawing conclusions is actually incredibly important!
+                <br>
+                <br>
+                With the advent of the WWW and the first online services, data collection also started to become interesting for the service providers, according to the motto <i>if I own a website on the Internet, I also want to know who is surfing it</i>.
+                <br>
+                However, in most cases we as consumers only want to disclose as little as possible and only the data necessary for the intended service - in fact, <i>my private data is no one else's business</i>.
+                <br>
+                <br>
+                The above-mentioned further development of the WWW's capabilities has allowed data to be assigned to individual profiles, enabling the recognition of unique users and the ability to trace their browsing activities even across different pages - the so called <a href="https://en.wikipedia.org/wiki/Device_fingerprint" target="_blank">device fingerprinting</a>.
+                <br>
+                Some known methods for assigning a unique fingerprint to browsers are <a href="https://en.wikipedia.org/wiki/Device_fingerprint#Hardware_benchmarking" target="_blank">hardware benchmarking</a>, <a href="https://en.wikipedia.org/wiki/Device_fingerprint#Canvas_and_WebGL" target="_blank">fingerprinting via Canvas and WebGL</a> or <a href="https://en.wikipedia.org/wiki/Device_fingerprint#Browser_extensions" target="_blank">analysis of active browser extensions</a>. 
+                <br><b>This article is about a less known way to achieve something similar!</b>
                 <br>
                 
                 <h3>
@@ -917,18 +933,19 @@
 
                 <br><br>
                 To serve a favicon on their website, a developer has to include an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link">&lt;link rel&gt;</a> attribute in the webpage’s header.
-                If this tag does exist, the browser requests the icon from the predefined source. Finally if the server response contains an valid icon file that can be properly rendered this image is displayed by the browser. In any other case, a blank favicon is shown.
+                If this tag does exist, the browser requests the icon from the predefined source and if the server response contains an valid icon file that can be properly rendered this icon is displayed by the browser. In any other case, a blank favicon is shown.
                 <br><br>
                 <div class="highlight highlight-source-js">
                     <pre><span class="pl-ent">&lt;link </span><span class="pl-c1">rel</span><span class="pl-mb">=</span><span class="pl-k">"icon" </span><span class="pl-c1">href</span><span class="pl-mb">=</span><span class="pl-k">"/favicon.ico"</span> </span><span class="pl-c1">type</span><span class="pl-mb">=</span><span class="pl-k">"image/x-icon"</span><span class="pl-ent">&gt;</span></pre>
                 </div>
 
                 The favicons must be made very easily accessible by the browser. Therefore, they are cached in a separate local database on the system, called the favicon cache (F-Cache).
-                The F-Cache data entries include the URL visited (subdomain, domain, route, URL paramter), the favicon ID, and the time to live (TTL). While this provides web developers the ability to delineate parts of their website using a wide variety of icons for individual routes and subdomains, it also leads to a possible tracking scenario.
+                A F-Cache data entries includes the visited URL (subdomain, domain, route, URL paramter), the favicon ID and the time to live (TTL). 
+                <br>While this provides web developers the ability to delineate parts of their website using a wide variety of icons for individual routes and subdomains, it also leads to a possible <b>tracking scenario</b>.
                 <br>
                 <br>
-                    When a user visits a website, the browser checks after it has been completely transferred if a favicon is needed by looking up the source of the shortcut icon link reference.
-                    The browser first will check the local F-cache for an entry containing the URL of the active website. If a favicon entry exists, the icon will be loaded from the cache and then displayed. 
+                    When a user visits a website, the browser checks if a favicon is needed by looking up the source of the shortcut icon link reference of the requested webpage.<br>
+                    The browser initialy checks the local F-cache for an entry containing the URL of the active website. If a favicon entry exists, the icon will be loaded from the cache and then displayed. 
                     However, if there is no entry, for example because no favicon has ever been loaded under this particular domain, or the data in the cache is out of date, the browser makes a GET request to the server to load the site's favicon.
                 <br>
                 
@@ -938,11 +955,12 @@
                     </a>
                     Threat Model
                 </h3>
-                In the article a possible threat model is explained that allows to assign a unique identifier to each browser in order to draw conclusions about the user and to be able to identify this user even in case of applied anti-fingerprint measures, such as the use of a VPN, deletion of cookies, deletion of the browser cache or manipulation of the client header information.
+                In the article a possible threat model is explained that allows to assign a <b>unique identifier to each browser</b> in order to draw conclusions about the user and to be able to identify this user even in case of applied anti-fingerprint measures, such as the use of a <a href="https://en.wikipedia.org/wiki/Virtual_private_network" target="_blank">VPN</a>, deletion of <a href="https://en.wikipedia.org/wiki/HTTP_cookie" target="_blank">cookies</a>, deletion of the <a href="https://en.wikipedia.org/wiki/Web_cache" target="_blank">browser cache</a> or manipulation of the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Request_header" target="_blank">client header information</a>.
                 <br><br>
                 A web server can draw conclusions about whether a browser has already loaded a favicon or not:<br>
-                So when the browser requests a web page, if the favicon is not in the local F-cache, another request for the favicon is made. If the icon already exists in the F-Cache, no further request is sent.
-                By appropriately combining delivered favicons for specific URL paths for a browser, a unique identification number can be assigned to it. When the website is reloaded, the web server can reconstruct the identification number with the network requests sent by the client for the missing favicons and thus identify the browser.
+                So when the browser requests a web page, if the favicon is not in the local F-cache, another request for the favicon is made. If the icon already exists in the F-Cache, no further request is sent.<br>
+                By combining the state of delivered and not delivered favicons for specific URL paths for a browser, a unique pattern (identification number) can be assigned to the client.
+                <br>When the website is reloaded, the web server can reconstruct the identification number with the network requests sent by the client for the missing favicons and thus identify the browser.
                 <br>
                 <br>
                 <br>
@@ -951,26 +969,29 @@
                     <li>
                         <b>Write</b> identification
                         <p>
-                            The goal in the write operation is to generate a unique identifier and store it.<br>
-                            First step is to create a new N-bit ID on the server side in the form of a path vector shown below.<br><br>
+                            The goal of the <b>write</b> operation is to generate a unique identifier and store it on the client side.<br>
+                            First step is to create a new N-bit ID on the server and translate it to a path vector as shown below.<br><br>
                             <strong>Example:</strong>
                             <div class="highlight highlight-source-js">
-                                <pre><span class="pl-k">const</span> N<span class="pl-k"> = </span><span class="pl-s">4</span>;<br><span class="pl-k">const</span> ROUTES<span class="pl-k"> = </span>[<span class="pl-s"><span class="pl-pds">"</span>/a<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>/b<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>/c<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>/d<span class="pl-pds">"</span></span>];<br><span class="pl-k">const</span> ID<span class="pl-k"> = </span><span class="pl-ms">generateNewID()</span>;<span class="pl-mb"> // -> 1010 • (select any dec number, here ten: 10 -> 1010b in binary)</span></pre>
+                                <pre><span class="pl-k">const</span> N<span class="pl-k"> = </span><span class="pl-s">4</span>;<br><span class="pl-k">const</span> ROUTES<span class="pl-k"> = </span>[<span class="pl-s"><span class="pl-pds">"</span>/a<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>/b<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>/c<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>/d<span class="pl-pds">"</span></span>];<br><span class="pl-k">const</span> ID<span class="pl-k"> = </span><span class="pl-ms">generateNewID()</span>;<span class="pl-mb"> // -> 1010 • (select unassigned decimal number, here ten: 10 -> 1010b in binary)</span></pre>
                             </div>
                             <div class="highlight highlight-source-js">
                                 <pre><span class="pl-k">const</span> vector<span class="pl-k"> = </span><span class="pl-ms">generateVectorFromID(<span class="pl">ID</span>)</span>;<span class="pl-mb"> // -> ["/a", "/c"] • (because [a, b, c, d] where [1, 0, 1, 0] is 1 -> a, c)</span></pre>
                             </div>
                         </p>
                         Second step is to store the actual data inside the browser:<br>
-                        The user will be redirected along all of the website paths, starting at <i>/a</i>, navigating to <i>/b</i>, to <i>/c</i> and finally to route <i>/d</i>.
-
+                        The user will be redirected along all of the website paths, starting at <i>/a</i>, navigating to <i>/b</i>, to <i>/c</i> and finally to <i>/d</i>.
+                        <br>
                         <ul>
                             <li>/a</li>
                             <li>/b</li>
                             <li>/c</li>
                             <li>/d</li>
                         </ul>
+                        <br>
+                       
                         While the user is redirected on every load the browser requests a favicon for the respective route, going the same way like<i>/a/favicon.ico</i>, to <i>/b/favicon.ico</i>, to <i>/c/favicon.ico</i> and finally to <i>/d/favicon.ico</i>.
+                        <br>
                         <ul>
                             <li>/a/favicon.ico</li>
                             <li>/b/favicon.ico</li>
@@ -980,8 +1001,8 @@
 
                         <br>
 
-                        The webserver will now only process those favicon requests whose path is present in the previously created path vector. In this case the webserver answers with the favicon and StatusCode 200.<br>
-                        However, if the requested route is not in the path vector, the webserver aborts the request with an error code, or sends no response at all.<br>
+                        The webserver will now only process those favicon requests whose path is present in the previously created path vector. If the route is present the webserver answers with the favicon file and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200" target="_blank">Status 200 OK</a>.<br>
+                        If the requested route is not in the path vector, the webserver aborts the request with an <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404" target="_blank">Error 404 Not Found</a>, or sends no response.<br>
                         Since the browser - as described earlier - only stores the delivered favicons in the F-Cache, we have now stored our unique identification number and the writing process is complete. <br><br>
                         In the above example, the webserver only responds to requests for the favicons under paths <i>/a/favicon.ico</i> and <i>/c/favicon.ico</i>. The F-Cache only has favicons-entries for these two paths.<br>
 
@@ -997,9 +1018,9 @@
                         <b>Read</b> identification
                         <p>
                             Here the goal is to re-identify a returning user based on his existing F-Cache entries.<br><br>
-                            In read mode the server always responds to favicon requests with an error status code (404), but responds normally to all other requests. 
-                            This preserves the integrity of the cached favicons during the read operation, since no new F-cache entry is created by the browser.<br>
-                            To reconstruct a visitor's identifier, we must route the browser through all available paths and wait to see which favions are requested by the browser (those that are not present in the browsers F-cache).
+                            In read mode the server always responds to favicon requests with an <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404" target="_blank">Error 404 Not Found</a> status, but responds normally to all other requests. 
+                            This preserves the <b>integrity of the cached favicons</b> during the read operation, since no new F-cache entry is created by the browser.<br>
+                            To reconstruct a visitor's identifier, the browser must be routed through all available routes. The server records which favions are requested by the browser (those that are not present in the browsers F-cache) and which are not.
                             <br>
                             <br>
                             <strong>Example:</strong>
@@ -1085,7 +1106,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Redirects (N bit)</th>
+                            <th>Redirects<br>(N bit)</th>
                             <th>distinguishable clients</th>
                             <th>write time</th>
                             <th>read time</th>
@@ -1096,64 +1117,64 @@
                         <tr>
                             <td align="center">2</em></td>
                             <td align="center">4</td>
-                            <td>30ms</td>
-                            <td>20ms</td>
+                            <td>&lt; 300<small>ms</small></td>
+                            <td>&lt; 300<small>ms</small></td>
                             <td>One user with four browsers</td>
                         </tr>
                         <tr>
                             <td align="center">3</em></td>
                             <td align="center">8</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>&lt; 300<small>ms</small></td>
+                            <td>~ 300<small>ms</small></td>
                             <td>About the amount of Kardashians</td>
                         </tr>
                         <tr>
                             <td align="center">4</em></td>
                             <td align="center">16</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>&lt; 1<small>s</small></td>
+                            <td>~ 1<small>s</small></td>
                             <td>Bunch of your neighbors</td>
                         </tr>
                         <tr>
                             <td align="center">8</em></td>
                             <td align="center">256</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>&lt; 1<small>s</small></td>
+                            <td>~ 1<small>s</small></td>
                             <td>All your facebook-friends</td>
                         </tr>
                         <tr>
                             <td align="center">10</em></td>
                             <td align="center">1024</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>&lt; 1.2<small>s</small></td>
+                            <td>~ 1<small>s</small></td>
                             <td>Really small village</td>
                         </tr>
                         <tr>
                             <td align="center">20</em></td>
                             <td align="center">1,048,576</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>&lt; 1.8<small>s</small></td>
+                            <td>&lt; 1.5<small>s</small></td>
                             <td>Small city (San Jose, California)</td>
                         </tr>
                         <tr>
                             <td align="center">24</em></td>
                             <td align="center">16,777,216</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>&lt; 2.4<small>s</small></td>
+                            <td>&lt; 2<small>s</small></td>
                             <td>Whole Netherlands</td>
                         </tr>
                         <tr>
                             <td align="center">32</em></td>
                             <td align="center">4,294,967,296</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>~ 3<small>s</small></td>
+                            <td>&lt; 3<small>s</small></td>
                             <td>All people with internet access</td>
                         </tr>
                         <tr>
                             <td align="center">34</em></td>
                             <td align="center">17,179,869,184</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>~ 4<small>s</small></td>
+                            <td>~ 4<small>s</small></td>
                             <td>All people with internet access each using 4 different browsers</td>
                         </tr>
                     </tbody>

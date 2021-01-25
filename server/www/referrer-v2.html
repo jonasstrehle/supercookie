@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>supercookie • {{index}}</title>
+        <meta name="author" content="Jonas Strehle"/>
+        <meta name="robots" content="noindex"/>
+        <!-- <link onload="alert(3)" rel="shortcut icon" href="http://localhost:4242/f/{{favicon}}" type="image/x-icon"/> -->
+        <meta name="viewport" content="viewport-fit=cover, user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        
+
+        <style>
+            html, body {
+                margin: 0px;
+                width: 100%;
+                height: 100%;
+                padding: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(32, 32, 32);
+                color: #ff0358;
+                font-size: large;
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1>{{index}}</h1>
+        <script type="module">
+            // window.addEventListener("load", () => {
+            //     setTimeout(()=>{
+            //         document.location.href = `${document.location.origin}/{{referrer}}`;
+            //     }, {{bit}} ? 0 : 1000000000);
+            // });
+            //[...document.getElementsByTagName("link")].filter(link => link.getAttribute("rel").includes("icon"))?.pop();
+            
+            console.info(`{{index}} • bit v2`, JSON.parse("{{bit}}"));
+            
+            if (JSON.parse("{{bit}}"))
+                document.location.href = `${document.location.origin}/{{referrer}}`;
+            const favicon = document.createElement('link');
+            favicon.rel = "icon preload";
+            favicon.as = "image"
+            favicon.type = "image/x-icon"
+            favicon.onload = favicon.onerror = () => document.location.href = `${document.location.origin}/{{referrer}}`;
+            document.head.appendChild(favicon)
+            globalThis.f = favicon
+            // setTimeout(()=>{
+            favicon.href = `//${window.location.host}/f/{{favicon}}`;
+            // }, 3000)
+        </script>
+    </body>
+</html>

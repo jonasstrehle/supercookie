@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs";
 import cookieParser from "cookie-parser";
 import crypto from "crypto";
-const generateUUID = (pattern = `xxxx-xxxx-xxxx-xxxx-xxxx`, charset = "abcdefghijklmnopqrstuvwxyz0123456789") => pattern.replace(/[x]/g, () => charset[Math.floor(Math.random() * charset.length)]);
+const generateUUID = (pattern = "xxxx-xxxx-xxxx-xxxx-xxxx", charset = "abcdefghijklmnopqrstuvwxyz0123456789") => pattern.replace(/[x]/g, () => charset[Math.floor(Math.random() * charset.length)]);
 const hashNumber = (value) => crypto.createHash("MD5")
     .update(value.toString())
     .digest("hex").slice(-12).split(/(?=(?:..)*$)/)
@@ -11,16 +11,17 @@ const hashNumber = (value) => crypto.createHash("MD5")
 const createRoutes = (base, count) => {
     const array = [];
     for (let i = 0; i < count; i++)
-        array.push(crypto.createHash("MD5").update(`${base}${i.toString()}`).digest("base64").replace(/(\=|\+|\/)/g, '0').substring(0, 22));
+        array.push(crypto.createHash("MD5")
+            .update(`${base}${i.toString()}`).digest("base64")
+            .replace(/(\=|\+|\/)/g, '0').substring(0, 22));
     return array;
 };
 class Storage {
     constructor() {
         this._path = path.join(path.resolve(), "data.json");
         this._content = {};
-        if (!this.existsPersistent()) {
+        if (!this.existsPersistent())
             this.createPersistent();
-        }
         this.read();
     }
     get content() {
@@ -67,6 +68,8 @@ const N = 10;
 const webserver_1 = express();
 const webserver_2 = express();
 const maxN = 2 ** N - 1;
+console.info(`supercookie | Starting up using N=${N}, C-ID='${CACHE_IDENTIFIER}' ...`);
+console.info(`supercookie | There are ${Math.max(maxN - 1 - (STORAGE.index ?? 1), 0)}/${maxN - 1} unique identifiers left.`);
 let Webserver = (() => {
     class Webserver {
         static getVector(identifier) {
@@ -151,6 +154,9 @@ let Profile = (() => {
         get vector() {
             return this._vector;
         }
+        get visited() {
+            return this._visitedRoutes;
+        }
         get identifier() {
             return this._identifier;
         }
@@ -179,6 +185,7 @@ webserver_2.use((req, res, next) => {
 });
 webserver_2.get("/read", (_req, res) => {
     const uid = generateUUID();
+    console.info(`supercookie | Visitor uid='${uid}' is known • Read`);
     const profile = Profile.from(uid);
     if (profile === null)
         return res.redirect("/read");
@@ -187,6 +194,7 @@ webserver_2.get("/read", (_req, res) => {
 });
 webserver_2.get("/write", (_req, res) => {
     const uid = generateUUID();
+    console.info(`supercookie | Visitor uid='${uid}' is unknown • Write`, STORAGE.index);
     const profile = Profile.from(uid, STORAGE.index);
     if (profile === null)
         return res.redirect("/write");
@@ -201,9 +209,12 @@ webserver_2.get("/t/:ref", (req, res) => {
     if (!Webserver.hasRoute(referrer) || profile === null)
         return res.redirect('/');
     const nextReferrer = Webserver.getNextRoute(referrer);
+    if (profile._isReading() && profile.visited.has(referrer))
+        return res.redirect('/');
     Webserver.sendFile(res, path.join(path.resolve(), "www/referrer.html"), {
         referrer: nextReferrer ? `t/${nextReferrer}?x=${Math.random() * 10000}` : profile._isReading() ? "identity" : "",
         favicon: referrer,
+        mode: profile._isReading() ? 'r' : 'w',
         bit: !profile._isReading() ? profile.vector.includes(referrer) : false,
         index: `${Webserver.getIndexByRoute(referrer) + 1} / ${Webserver.routes.length}`
     });
@@ -218,11 +229,19 @@ webserver_2.get("/identity", (req, res) => {
     const identifier = profile._calcIdentifier();
     if (identifier === maxN)
         return res.redirect("/write");
-    const identifierHash = hashNumber(identifier);
-    Webserver.sendFile(res, path.join(path.resolve(), "www/identity.html"), {
-        hash: identifierHash,
-        identifier: identifier
-    });
+    if (identifier !== 0) {
+        const identifierHash = hashNumber(identifier);
+        console.info(`supercookie | Visitor successfully identified as '${identifierHash}' • (#${identifier}).`);
+        Webserver.sendFile(res, path.join(path.resolve(), "www/identity.html"), {
+            hash: identifierHash,
+            identifier: `#${identifier}`
+        });
+    }
+    else
+        Webserver.sendFile(res, path.join(path.resolve(), "www/identity.html"), {
+            hash: "AN ON YM US",
+            identifier: "browser not vulnerable"
+        });
 });
 webserver_2.get(`/${CACHE_IDENTIFIER}`, (req, res) => {
     const rid = !!req.cookies.rid;
@@ -240,7 +259,7 @@ webserver_2.get('/', (_req, res) => {
     res.redirect(`/${CACHE_IDENTIFIER}`);
 });
 webserver_2.get("/l/:ref", (_req, res) => {
-    console.log("new visitor", Date.now());
+    console.info(`supercookie | Unknown visitor detected.`);
     Webserver.setCookie(res, "mid", true, { expires: null });
     const data = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=", "base64");
     res.writeHead(200, {
@@ -259,11 +278,11 @@ webserver_2.get("/f/:ref", (req, res) => {
     const profile = Profile.get(uid);
     if (profile._isReading()) {
         profile._visitRoute(referrer);
-        console.log("Reading favicon", Webserver.getIndexByRoute(referrer));
+        console.info(`supercookie | Favicon requested by uid='${uid}' • Read `, Webserver.getIndexByRoute(referrer), "•", Array.from(profile.visited).map(route => Webserver.getIndexByRoute(route)));
         return res.type("gif"), res.status(404), res.end();
     }
     if (profile.vector.includes(referrer)) {
-        console.log("writing", Webserver.getIndexByRoute(referrer));
+        console.info(`supercookie | Favicon requested by uid='${uid}' • Write`, Webserver.getIndexByRoute(referrer), "•", Array.from(profile.vector).map(route => Webserver.getIndexByRoute(route)));
         return;
     }
     const data = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=", "base64");
@@ -276,9 +295,15 @@ webserver_2.get("/f/:ref", (req, res) => {
     res.end(data);
 });
 webserver_1.use(express.static(path.join(path.resolve(), "www"), { index: false, extensions: ["html"] }));
-webserver_2.use(express.static(path.join(path.resolve(), "www"), { index: false, extensions: ["html"] }));
+webserver_2.use("/assets", express.static(path.join(path.resolve(), "www/assets"), { index: false, extensions: ["html"] }));
 webserver_1.get('/', (_req, res) => {
     Webserver.sendFile(res, path.join(path.resolve(), "www/index.html"));
+});
+webserver_2.get("/favicon.ico", (_req, res) => {
+    res.sendFile(path.join(path.resolve(), "www/favicon.ico"));
+});
+webserver_2.get("/workwise", (_req, res) => {
+    res.sendFile(path.join(path.resolve(), "www/workwise.html"));
 });
 webserver_1.get("*", (_req, res) => {
     res.redirect('/');
@@ -288,7 +313,7 @@ webserver_2.get("*", (req, res) => {
         path: decodeURIComponent(req.path)
     });
 });
-webserver_1.listen(WEBSERVER_PORT_1, () => console.log(`express | Express webserver_1 running on port ${WEBSERVER_PORT_1}`));
-webserver_2.listen(WEBSERVER_PORT_2, () => console.log(`express | Express webserver_2 running on port ${WEBSERVER_PORT_2}`));
-STORAGE.index = STORAGE.index ?? 0;
+webserver_1.listen(WEBSERVER_PORT_1, () => console.info(`express-web | Webserver-1 running on port:`, WEBSERVER_PORT_1));
+webserver_2.listen(WEBSERVER_PORT_2, () => console.info(`express-web | Webserver-2 running on port:`, WEBSERVER_PORT_2));
+STORAGE.index = STORAGE.index ?? 1;
 STORAGE.cacheID = CACHE_IDENTIFIER;

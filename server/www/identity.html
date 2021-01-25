@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8"/>
         <title>id • {{hash}}</title>
+        <meta name="author" content="Jonas Strehle"/>
+        <meta name="robots" content="noindex"/>
         <meta name="viewport" content="viewport-fit=cover, user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
@@ -156,7 +158,7 @@
                 <div>
                     <img src="/assets/header.png">
                     <p class="speechbubble">
-                        Your ID: <a class="identifier-hash" onclick="window.getSelection().selectAllChildren(this); document.execCommand('copy');">{{hash}}</a> <small>(#{{identifier}})</small>
+                        Your ID: <a class="identifier-hash" onclick="window.getSelection().selectAllChildren(this); document.execCommand('copy');">{{hash}}</a> <small>({{identifier}})</small>
                     </p>
                 </div>
             </div>
@@ -165,11 +167,11 @@
                     <i class="material-icons">cached</i>
                     <div>Try Again</div>
                 </a>
-                <a class="button blue" href="/workwise">
+                <a class="button blue" href="/workwise" id="workwise">
                     <i class="material-icons">help</i>
                     <div>How does it work?</div>
                 </a>
-                <a class="button red" target="_blank" href="https://github.com/jonasstrehle/supercookie.me">
+                <a class="button red" target="_blank" href="https://github.com/jonasstrehle/supercookie">
                     <i class="material-icons">source</i>
                     <div>Get Source-Code</div>
                 </a>
