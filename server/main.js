@@ -299,6 +299,9 @@ webserver_2.use("/assets", express.static(path.join(path.resolve(), "www/assets"
 webserver_1.get('/', (_req, res) => {
     Webserver.sendFile(res, path.join(path.resolve(), "www/index.html"));
 });
+webserver_1.get("/favicon.ico", (_req, res) => {
+    res.sendFile(path.join(path.resolve(), "www/favicon.ico"));
+});
 webserver_2.get("/favicon.ico", (_req, res) => {
     res.sendFile(path.join(path.resolve(), "www/favicon.ico"));
 });

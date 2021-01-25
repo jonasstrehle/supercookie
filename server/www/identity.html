@@ -74,6 +74,7 @@
                 text-decoration: none!important;
                 text-align: center;
                 display: flex;
+                transition: all 0.3s;
             }
             .button-container > .button.blue {
                 background-color: #20aee4;
@@ -95,7 +96,6 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;
-                transition: all 0.3s;
             }
             .button > i {
                 width: 25%;
@@ -155,9 +155,9 @@
     <body>
         <div class="background"></div>
         <div class="main">
-            <div class="identifier-container" onclick="document.location.href='https://supercookie.me'">
+            <div class="identifier-container">
                 <div>
-                    <img src="/assets/header.png">
+                    <img src="/assets/header.png" onclick="document.location.href='https://supercookie.me'">
                     <p class="speechbubble">
                         Your ID: <a class="identifier-hash" onclick="window.getSelection().selectAllChildren(this); document.execCommand('copy');">{{hash}}</a> <small>({{identifier}})</small>
                     </p>
