@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": false,
+        "removeComments": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "allowJs": false,
+        "experimentalDecorators": true,
+        "lib": [
+            "esnext.array",
+            "esnext",
+            "dom"
+        ]
+    }
+  }

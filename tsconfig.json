@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "sourceMap": false,
+        "removeComments": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "allowJs": false,
+        "experimentalDecorators": true,
+        "lib": [
+            "esnext.array",
+            "esnext",
+            "dom"
+        ]
+    }
+  }

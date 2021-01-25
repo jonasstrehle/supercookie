@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>supercookie</title>
+        <meta name="viewport" content="viewport-fit=cover, user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" href="/l/{{favicon}}" type="image/x-icon"/>
+        <style>
+            html, body {
+                margin: 0px;
+                width: 100%;
+                height: 100%;
+                padding: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(32, 32, 32);
+                color: white;
+                font-size: large;
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1>...</h1>
+        <script type="module">
+            window.onload = async () => {
+                await new Promise((resolve) => setTimeout(resolve, 500));
+                const route = (document.cookie.match(new RegExp(`(^| )mid=([^;]+)`)) || [])[2] ? "/write" : "/read";
+                document.cookie.split(";").forEach((c) => document.cookie = c.replace(/^ +/, "").replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`));
+                window.location.href = route;
+            }
+        </script>
+    </body>
+</html>

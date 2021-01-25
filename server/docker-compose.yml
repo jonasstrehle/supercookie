@@ -1,0 +1,100 @@
+version: "3"
+
+services:
+  proxy:
+    image: "traefik:v2.0"
+    container_name: supercookie-proxy
+    hostname: supercookie-proxy
+    restart: always
+    command:
+      - --api=true
+      - --api.insecure=true
+      - --ping
+      - --providers.docker=true
+      - --providers.docker.network=main
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.web-secure.address=:443
+      - --certificatesresolvers.myhttpchallenge.acme.httpchallenge=true
+      - --certificatesresolvers.myhttpchallenge.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.myhttpchallenge.acme.caserver=https://acme-v02.api.letsencrypt.org/directory #staging
+      - --certificatesresolvers.myhttpchallenge.acme.email=postmaster@unyt.cc
+      - --certificatesresolvers.myhttpchallenge.acme.storage=/letsencrypt/acme.json
+    ports:
+      - "80:80"
+      - "443:443"
+    expose:
+      - 80
+    networks:
+      - "main"
+      - "internal"
+    volumes:
+      - ./letsencrypt:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.proxy-https.rule=Host(`proxy.supercookie.me`)"
+      - "traefik.http.routers.proxy-https.entrypoints=web-secure"
+      - "traefik.http.routers.proxy-https.tls=true"
+      - "traefik.http.routers.proxy-https.service=api@internal"
+      - "traefik.http.routers.proxy-https.middlewares=traefik-auth"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$slBHbCEP$$O81Z20epryzFYfNQ1IvPf0"
+        # admin:Th1s1sTh30n34nd0nlyExm4tr1cul4t0r
+        # generate via - echo $(htpasswd -nb username password) | sed -e s/\\$/\\$\\$/g
+      - "traefik.http.routers.proxy-http.rule=Host(`proxy.supercookie.me`)"
+      - "traefik.http.routers.proxy-http.entrypoints=web"
+      - "traefik.http.routers.proxy-http.middlewares=https_redirect"
+      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.https_redirect.redirectscheme.permanent=true"
+
+  supercookie:
+    container_name: supercookie-web
+    hostname: supercookie-web
+    restart: always
+    image: "node"
+    build: .
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+      - ./node_modules:/home/node/app/node_modules
+      - ./tsconfig.json:/home/node/app/tsconfig.json
+    expose:
+      - 10080
+      - 10081
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+
+      # web 1
+      - "traefik.http.services.service-supercookie-web-1.loadbalancer.server.port=10080"
+      - "traefik.http.routers.supercookie-web-1.rule=Host(`supercookie.me`)"
+      - "traefik.http.routers.supercookie-web-1.entrypoints=web"
+      - "traefik.http.routers.supercookie-web-1.middlewares=redirect-to-https@docker"
+      - "traefik.http.routers.supercookie-web-1.service=service-supercookie-web-1"
+
+      - "traefik.http.routers.supercookie-web-1-secured.rule=Host(`supercookie.me`)"
+      - "traefik.http.routers.supercookie-web-1-secured.tls=true"
+      - "traefik.http.routers.supercookie-web-1-secured.tls.certresolver=myhttpchallenge"
+      - "traefik.http.routers.supercookie-web-1-secured.service=service-supercookie-web-1"
+
+
+      # web 2
+      - "traefik.http.services.service-supercookie-web-2.loadbalancer.server.port=10081"
+      - "traefik.http.routers.supercookie-web-2.rule=Host(`demo.supercookie.me`)"
+      - "traefik.http.routers.supercookie-web-2.entrypoints=web"
+      - "traefik.http.routers.supercookie-web-2.middlewares=redirect-to-https@docker"
+      - "traefik.http.routers.supercookie-web-2.service=service-supercookie-web-2"
+
+      - "traefik.http.routers.supercookie-web-2-secured.rule=Host(`demo.supercookie.me`)"
+      - "traefik.http.routers.supercookie-web-2-secured.tls=true"
+      - "traefik.http.routers.supercookie-web-2-secured.tls.certresolver=myhttpchallenge"
+      - "traefik.http.routers.supercookie-web-2-secured.service=service-supercookie-web-2"
+    command: bash -c "node --experimental-json-modules ./main.js"
+    networks:
+      - main
+      - internal
+
+networks:
+  main:
+    external: true
+  internal:

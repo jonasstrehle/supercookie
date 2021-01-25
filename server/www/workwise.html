@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>supercookie • workwise</title>
+        <meta name="viewport" content="viewport-fit=cover, user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+        <style>
+            html, body {
+                margin: 0px;
+                width: 100%;
+                height: 100%;
+                padding: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #151d32;
+                color: white;
+                font-size: large;
+                font-family: sans-serif;
+            }
+            .main {
+                width: 100%;
+                display: flex;
+                left: 0;
+                right: 0;
+                margin: auto;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                padding: 3%;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .background {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                background-image: url(./assets/background.png);
+                opacity: 0.05;
+            }
+            .markdown-body {
+                z-index: 2;
+                width: 98%;
+            }
+            .diagram-image {
+                width: 90%;
+                margin-top: 20px;
+                background-color: #151D32!important;
+                border-radius: 40px;
+                border-radius: 28px;
+                padding: 20px;
+                box-shadow:  12px 12px 24px #0d111e,
+                            -12px -12px 24px #1d2946;
+            }
+        </style>
+
+        <style>
+            .markdown-body {
+                -ms-text-size-adjust: 100%;
+                -webkit-text-size-adjust: 100%;
+                line-height: 1.5;
+                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+                font-size: 16px;
+                line-height: 1.5;
+                word-wrap: break-word;
+                color: white;
+            }
+            .markdown-body .octicon {
+                display: inline-block;
+                fill: currentColor;
+                vertical-align: text-bottom;
+            }
+            .markdown-body .anchor {
+                float: left;
+                line-height: 1;
+                margin-left: -20px;
+                padding-right: 4px;
+            }
+            .markdown-body .anchor:focus {
+                outline: none;
+            }
+            .markdown-body h1 .octicon-link,
+            .markdown-body h2 .octicon-link,
+            .markdown-body h3 .octicon-link,
+            .markdown-body h4 .octicon-link,
+            .markdown-body h5 .octicon-link,
+            .markdown-body h6 .octicon-link {
+                color: #1b1f23;
+                vertical-align: middle;
+                visibility: hidden;
+            }
+            .markdown-body h1:hover .anchor,
+            .markdown-body h2:hover .anchor,
+            .markdown-body h3:hover .anchor,
+            .markdown-body h4:hover .anchor,
+            .markdown-body h5:hover .anchor,
+            .markdown-body h6:hover .anchor {
+                text-decoration: none;
+            }
+            
+            .markdown-body h1:hover .anchor .octicon-link,
+            .markdown-body h2:hover .anchor .octicon-link,
+            .markdown-body h3:hover .anchor .octicon-link,
+            .markdown-body h4:hover .anchor .octicon-link,
+            .markdown-body h5:hover .anchor .octicon-link,
+            .markdown-body h6:hover .anchor .octicon-link {
+                visibility: visible;
+            }
+            
+            .markdown-body h1:hover .anchor .octicon-link:before,
+            .markdown-body h2:hover .anchor .octicon-link:before,
+            .markdown-body h3:hover .anchor .octicon-link:before,
+            .markdown-body h4:hover .anchor .octicon-link:before,
+            .markdown-body h5:hover .anchor .octicon-link:before,
+            .markdown-body h6:hover .anchor .octicon-link:before {
+                width: 16px;
+                height: 16px;
+                content: ' ';
+                display: inline-block;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath fill='white' fill-rule='evenodd' d='M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z'%3E%3C/path%3E%3C/svg%3E");
+            }
+            .markdown-body details {
+                display: block;
+            }
+            .markdown-body summary {
+                display: list-item;
+            }
+            .markdown-body a {
+                background-color: initial;
+            }
+            .markdown-body a:active,
+            .markdown-body a:hover {
+                outline-width: 0;
+            }
+            .markdown-body strong {
+                font-weight: inherit;
+                font-weight: bolder;
+            }
+            .markdown-body h1 {
+                font-size: 2em;
+                margin: .67em 0;
+            }
+            .markdown-body img {
+                border-style: none;
+            }
+            .markdown-body code,
+            .markdown-body kbd,
+            .markdown-body pre {
+                font-family: monospace,monospace;
+                font-size: 1em;
+            }
+            .markdown-body hr {
+                box-sizing: initial;
+                height: 0;
+                overflow: visible;
+            }
+            .markdown-body input {
+                font: inherit;
+                margin: 0;
+            }
+            .markdown-body input {
+                overflow: visible;
+            }
+            .markdown-body [type=checkbox] {
+                box-sizing: border-box;
+                padding: 0;
+            }
+            .markdown-body * {
+                box-sizing: border-box;
+            }
+            .markdown-body input {
+                font-family: inherit;
+                font-size: inherit;
+                line-height: inherit;
+            }
+            .markdown-body a {
+                color: #0366d6;
+                text-decoration: none;
+            }
+            .markdown-body a:hover {
+                text-decoration: underline;
+            }
+            .markdown-body strong {
+                font-weight: 600;
+            }
+            .markdown-body hr {
+                height: 0;
+                margin: 15px 0;
+                overflow: hidden;
+                background: transparent;
+                border: 0;
+                border-bottom: 1px solid #dfe2e5;
+            }
+            .markdown-body hr:after,
+            .markdown-body hr:before {
+                display: table;
+                content: "";
+            }
+            .markdown-body hr:after {
+                clear: both;
+            }
+            .markdown-body table {
+                border-spacing: 0;
+                border-collapse: collapse;
+            }
+            .markdown-body td,
+            .markdown-body th {
+                padding: 0;
+            }
+            .markdown-body details summary {
+                cursor: pointer;
+            }
+            .markdown-body kbd {
+                display: inline-block;
+                padding: 3px 5px;
+                font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+                line-height: 10px;
+                color: #444d56;
+                vertical-align: middle;
+                background-color: #fafbfc;
+                border: 1px solid #d1d5da;
+                border-radius: 3px;
+                box-shadow: inset 0 -1px 0 #d1d5da;
+            }
+            .markdown-body h1,
+            .markdown-body h2,
+            .markdown-body h3,
+            .markdown-body h4,
+            .markdown-body h5,
+            .markdown-body h6 {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            .markdown-body h1 {
+                font-size: 32px;
+            }
+            .markdown-body h1,
+            .markdown-body h2 {
+                font-weight: 600;
+            }
+            .markdown-body h2 {
+                font-size: 24px;
+            }
+            .markdown-body h3 {
+                font-size: 20px;
+            }
+            .markdown-body h3,
+            .markdown-body h4 {
+                font-weight: 600;
+            }
+            .markdown-body h4 {
+                font-size: 16px;
+            }
+            .markdown-body h5 {
+                font-size: 14px;
+            }
+            .markdown-body h5,
+            .markdown-body h6 {
+                font-weight: 600;
+            }
+            .markdown-body h6 {
+                font-size: 12px;
+            }
+            .markdown-body p {
+                margin-top: 0;
+                margin-bottom: 10px;
+            }
+            .markdown-body blockquote {
+                margin: 0;
+            }
+            .markdown-body ol,
+            .markdown-body ul {
+                padding-left: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            .markdown-body ol ol,
+            .markdown-body ul ol {
+                list-style-type: lower-roman;
+            }
+            .markdown-body ol ol ol,
+            .markdown-body ol ul ol,
+            .markdown-body ul ol ol,
+            .markdown-body ul ul ol {
+                list-style-type: lower-alpha;
+            }
+            .markdown-body dd {
+                margin-left: 0;
+            }
+            .markdown-body code,
+            .markdown-body pre {
+                font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+                font-size: 12px;
+            }
+            .markdown-body pre {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            .markdown-body input::-webkit-inner-spin-button,
+            .markdown-body input::-webkit-outer-spin-button {
+                margin: 0;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+            .markdown-body :checked+.radio-label {
+                position: relative;
+                z-index: 1;
+                border-color: #0366d6;
+            }
+            .markdown-body .border {
+                border: 1px solid #e1e4e8!important;
+            }
+            .markdown-body .border-0 {
+                border: 0!important;
+            }
+            .markdown-body .border-bottom {
+                border-bottom: 1px solid #e1e4e8!important;
+            }
+            .markdown-body .rounded-1 {
+                border-radius: 3px!important;
+            }
+            .markdown-body .bg-white {
+                background-color: #fff!important;
+            }
+            .markdown-body .bg-gray-light {
+                background-color: #fafbfc!important;
+            }
+            .markdown-body .mb-0 {
+                margin-bottom: 0!important;
+            }
+            .markdown-body .my-2 {
+                margin-top: 8px!important;
+                margin-bottom: 8px!important;
+            }
+            .markdown-body .pl-0 {
+                padding-left: 0!important;
+            }
+            .markdown-body .py-0 {
+                padding-top: 0!important;
+                padding-bottom: 0!important;
+            }
+            .markdown-body .pl-1 {
+                padding-left: 4px!important;
+            }
+            .markdown-body .pl-2 {
+                padding-left: 8px!important;
+            }
+            .markdown-body .py-2 {
+                padding-top: 8px!important;
+                padding-bottom: 8px!important;
+            }
+            .markdown-body .pl-3,
+            .markdown-body .px-3 {
+                padding-left: 16px!important;
+            }
+            .markdown-body .px-3 {
+                padding-right: 16px!important;
+            }
+            .markdown-body .pl-4 {
+                padding-left: 24px!important;
+            }
+            .markdown-body .pl-5 {
+                padding-left: 32px!important;
+            }
+            .markdown-body .pl-6 {
+                padding-left: 40px!important;
+            }
+            .markdown-body .f6 {
+                font-size: 12px!important;
+            }
+            .markdown-body .lh-condensed {
+                line-height: 1.25!important;
+            }
+            .markdown-body .text-bold {
+                font-weight: 600!important;
+            }
+            .markdown-body .pl-c {
+                color: #6a737d;
+            }
+            .markdown-body .pl-c1,
+            .markdown-body .pl-s .pl-v {
+                color: #005cc5;
+            }
+            .markdown-body .pl-e,
+            .markdown-body .pl-en {
+                color: #6f42c1;
+            }
+            .markdown-body .pl-s .pl-s1,
+            .markdown-body .pl-smi {
+                color: #24292e;
+            }
+            .markdown-body .pl-ent {
+                color: #22863a;
+            }
+            .markdown-body .pl-k {
+                color: #d73a49;
+            }
+            .markdown-body .pl-pds,
+            .markdown-body .pl-s,
+            .markdown-body .pl-s .pl-pse .pl-s1,
+            .markdown-body .pl-sr,
+            .markdown-body .pl-sr .pl-cce,
+            .markdown-body .pl-sr .pl-sra,
+            .markdown-body .pl-sr .pl-sre {
+                color: #e9c730;
+            }
+            .markdown-body .pl-smw,
+            .markdown-body .pl-v {
+                color: #e36209;
+            }
+            .markdown-body .pl-bu {
+                color: #b31d28;
+            }
+            .markdown-body .pl-ii {
+                color: #fafbfc;
+                background-color: #b31d28;
+            }
+            .markdown-body .pl-c2 {
+                color: #fafbfc;
+                background-color: #d73a49;
+            }
+            .markdown-body .pl-c2:before {
+                content: "^M";
+            }
+            .markdown-body .pl-sr .pl-cce {
+                font-weight: 700;
+                color: #22863a;
+            }
+            .markdown-body .pl-ml {
+                color: #735c0f;
+            }
+            .markdown-body .pl-mh,
+            .markdown-body .pl-mh .pl-en,
+            .markdown-body .pl-ms {
+                font-weight: 700;
+                color: #005cc5;
+            }
+            .markdown-body .pl-mi {
+                font-style: italic;
+                color: #24292e;
+            }
+            .markdown-body .pl-mb {
+                font-weight: 700;
+                color: #62686e;
+            }
+            .markdown-body .pl-md {
+                color: #b31d28;
+                background-color: #ffeef0;
+            }
+            .markdown-body .pl-mi1 {
+                color: #22863a;
+                background-color: #f0fff4;
+            }
+            .markdown-body .pl-mc {
+                color: #e36209;
+                background-color: #ffebda;
+            }
+            .markdown-body .pl-mi2 {
+                color: #f6f8fa;
+                background-color: #005cc5;
+            }
+            .markdown-body .pl-mdr {
+                font-weight: 700;
+                color: #6f42c1;
+            }
+            .markdown-body .pl-ba {
+                color: #586069;
+            }
+            .markdown-body .pl-sg {
+                color: #959da5;
+            }
+            .markdown-body .pl-corl {
+                text-decoration: underline;
+                color: #032f62;
+            }
+            .markdown-body .pl {
+                color: white;
+            }
+            .markdown-body .mb-0 {
+                margin-bottom: 0!important;
+            }
+            .markdown-body .my-2 {
+                margin-bottom: 8px!important;
+            }
+            .markdown-body .my-2 {
+                margin-top: 8px!important;
+            }
+            .markdown-body .pl-0 {
+                padding-left: 0!important;
+            }
+            .markdown-body .py-0 {
+                padding-top: 0!important;
+                padding-bottom: 0!important;
+            }
+            .markdown-body .pl-1 {
+                padding-left: 4px!important;
+            }
+            .markdown-body .pl-2 {
+                padding-left: 8px!important;
+            }
+            .markdown-body .py-2 {
+                padding-top: 8px!important;
+                padding-bottom: 8px!important;
+            }
+            .markdown-body .pl-3 {
+                padding-left: 16px!important;
+            }
+            .markdown-body .pl-4 {
+                padding-left: 24px!important;
+            }
+            .markdown-body .pl-5 {
+                padding-left: 32px!important;
+            }
+            .markdown-body .pl-6 {
+                padding-left: 40px!important;
+            }
+            .markdown-body .pl-7 {
+                padding-left: 48px!important;
+            }
+            .markdown-body .pl-8 {
+                padding-left: 64px!important;
+            }
+            .markdown-body .pl-9 {
+                padding-left: 80px!important;
+            }
+            .markdown-body .pl-10 {
+                padding-left: 96px!important;
+            }
+            .markdown-body .pl-11 {
+                padding-left: 112px!important;
+            }
+            .markdown-body .pl-12 {
+                padding-left: 128px!important;
+            }
+            .markdown-body hr {
+                border-bottom-color: #eee;
+            }
+            .markdown-body kbd {
+                display: inline-block;
+                padding: 3px 5px;
+                font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+                line-height: 10px;
+                color: #444d56;
+                vertical-align: middle;
+                background-color: #fafbfc;
+                border: 1px solid #d1d5da;
+                border-radius: 3px;
+                box-shadow: inset 0 -1px 0 #d1d5da;
+            }
+            .markdown-body:after,
+            .markdown-body:before {
+                display: table;
+                content: "";
+            }
+            .markdown-body:after {
+                clear: both;
+            }
+            .markdown-body>:first-child {
+                margin-top: 0!important;
+            }
+            .markdown-body>:last-child {
+                margin-bottom: 0!important;
+            }
+            .markdown-body a:not([href]) {
+                color: inherit;
+                text-decoration: none;
+            }
+            .markdown-body blockquote,
+            .markdown-body details,
+            .markdown-body dl,
+            .markdown-body ol,
+            .markdown-body p,
+            .markdown-body pre,
+            .markdown-body table,
+            .markdown-body ul {
+                margin-top: 0;
+                margin-bottom: 16px;
+            }
+            .markdown-body hr {
+                height: .25em;
+                padding: 0;
+                margin: 24px 0;
+                background-color: #e1e4e8;
+                border: 0;
+            }
+            .markdown-body blockquote {
+                padding: 0 1em;
+                color: #bdbdbd;
+                border-left: .25em solid #dfe2e5;
+            }
+            .markdown-body blockquote>:first-child {
+                margin-top: 0;
+            }
+            .markdown-body blockquote>:last-child {
+                margin-bottom: 0;
+            }
+            .markdown-body h1,
+            .markdown-body h2,
+            .markdown-body h3,
+            .markdown-body h4,
+            .markdown-body h5,
+            .markdown-body h6 {
+                margin-top: 24px;
+                margin-bottom: 16px;
+                font-weight: 600;
+                line-height: 1.25;
+            }
+            .markdown-body h1 {
+                font-size: 2em;
+            }
+            .markdown-body h1,
+            .markdown-body h2 {
+                padding-bottom: .3em;
+                border-bottom: 1px solid #eaecef;
+            }
+            .markdown-body h2 {
+                font-size: 1.5em;
+            }
+            .markdown-body h3 {
+                font-size: 1.25em;
+            }
+            .markdown-body h4 {
+                font-size: 1em;
+            }
+            .markdown-body h5 {
+                font-size: .875em;
+            }
+            .markdown-body h6 {
+                font-size: .85em;
+            }
+            .markdown-body ol,
+            .markdown-body ul {
+                padding-left: 2em;
+            }
+            .markdown-body ol ol,
+            .markdown-body ol ul,
+            .markdown-body ul ol,
+            .markdown-body ul ul {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            .markdown-body li {
+                word-wrap: break-all;
+            }
+            .markdown-body li>p {
+                margin-top: 16px;
+            }
+            .markdown-body li+li {
+                margin-top: .25em;
+            }
+            .markdown-body dl {
+                padding: 0;
+            }
+            .markdown-body dl dt {
+                padding: 0;
+                margin-top: 16px;
+                font-size: 1em;
+                font-style: italic;
+                font-weight: 600;
+            }
+            .markdown-body dl dd {
+                padding: 0 16px;
+                margin-bottom: 16px;
+            }
+            .markdown-body table {
+                display: block;
+                width: 100%;
+                overflow: auto;
+            }
+            .markdown-body table th {
+                font-weight: 600;
+            }
+            .markdown-body table td,
+            .markdown-body table th {
+                padding: 6px 13px;
+                border: 1px solid #070911;
+            }
+            .markdown-body table tr {
+                background-color: #0d1221;
+                border-top: 1px solid #c6cbd1;
+            }
+            .markdown-body table tr:nth-child(2n) {
+                background-color: #141c33;
+            }
+            .markdown-body img {
+                max-width: 100%;
+                box-sizing: initial;
+                background-color: #fff;
+            }
+            .markdown-body img[align=right] {
+                padding-left: 20px;
+            }
+            .markdown-body img[align=left] {
+                padding-right: 20px;
+            }
+            .markdown-body code {
+                padding: .2em .4em;
+                margin: 0;
+                font-size: 85%;
+                background-color: rgba(27, 31, 35, .05);
+                border-radius: 3px;
+            }
+            .markdown-body pre {
+                word-wrap: normal;
+            }
+            .markdown-body pre>code {
+                padding: 0;
+                margin: 0;
+                font-size: 100%;
+                word-break: normal;
+                white-space: pre;
+                background: transparent;
+                border: 0;
+            }
+            .markdown-body .highlight {
+                margin-bottom: 16px;
+            }
+            .markdown-body .highlight pre {
+                margin-bottom: 0;
+                word-break: normal;
+            }
+            .markdown-body .highlight pre,
+            .markdown-body pre {
+                padding: 16px;
+                overflow: auto;
+                font-size: 85%;
+                line-height: 1.45;
+                background-color: #0d1221;
+                border-radius: 3px;
+            }
+            .markdown-body pre code {
+                display: inline;
+                max-width: auto;
+                padding: 0;
+                margin: 0;
+                overflow: visible;
+                line-height: inherit;
+                word-wrap: normal;
+                background-color: initial;
+                border: 0;
+            }
+            .markdown-body .commit-tease-sha {
+                display: inline-block;
+                font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+                font-size: 90%;
+                color: #444d56;
+            }
+            .markdown-body .full-commit .btn-outline:not(:disabled):hover {
+                color: #005cc5;
+                border-color: #005cc5;
+            }
+            .markdown-body .blob-wrapper {
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+            .markdown-body .blob-wrapper-embedded {
+                max-height: 240px;
+                overflow-y: auto;
+            }
+            .markdown-body .blob-num {
+                width: 1%;
+                min-width: 50px;
+                padding-right: 10px;
+                padding-left: 10px;
+                font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+                font-size: 12px;
+                line-height: 20px;
+                color: rgba(27, 31, 35, .3);
+                text-align: right;
+                white-space: nowrap;
+                vertical-align: top;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .markdown-body .blob-num:hover {
+                color: rgba(27, 31, 35, .6);
+            }
+            .markdown-body .blob-num:before {
+                content: attr(data-line-number);
+            }
+            .markdown-body .blob-code {
+                position: relative;
+                padding-right: 10px;
+                padding-left: 10px;
+                line-height: 20px;
+                vertical-align: top;
+            }
+            .markdown-body .blob-code-inner {
+                overflow: visible;
+                font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+                font-size: 12px;
+                color: #24292e;
+                word-wrap: normal;
+                white-space: pre;
+            }
+            .markdown-body .pl-token.active,
+            .markdown-body .pl-token:hover {
+                cursor: pointer;
+                background: #ffea7f;
+            }
+            .markdown-body .tab-size[data-tab-size="1"] {
+                -moz-tab-size: 1;
+                tab-size: 1;
+            }
+            .markdown-body .tab-size[data-tab-size="2"] {
+                -moz-tab-size: 2;
+                tab-size: 2;
+            }
+            .markdown-body .tab-size[data-tab-size="3"] {
+                -moz-tab-size: 3;
+                tab-size: 3;
+            }
+            .markdown-body .tab-size[data-tab-size="4"] {
+                -moz-tab-size: 4;
+                tab-size: 4;
+            }
+            .markdown-body .tab-size[data-tab-size="5"] {
+                -moz-tab-size: 5;
+                tab-size: 5;
+            }
+            .markdown-body .tab-size[data-tab-size="6"] {
+                -moz-tab-size: 6;
+                tab-size: 6;
+            }
+            .markdown-body .tab-size[data-tab-size="7"] {
+                -moz-tab-size: 7;
+                tab-size: 7;
+            }
+            .markdown-body .tab-size[data-tab-size="8"] {
+                -moz-tab-size: 8;
+                tab-size: 8;
+            }
+            .markdown-body .tab-size[data-tab-size="9"] {
+                -moz-tab-size: 9;
+                tab-size: 9;
+            }
+            .markdown-body .tab-size[data-tab-size="10"] {
+                -moz-tab-size: 10;
+                tab-size: 10;
+            }
+            .markdown-body .tab-size[data-tab-size="11"] {
+                -moz-tab-size: 11;
+                tab-size: 11;
+            }
+            .markdown-body .tab-size[data-tab-size="12"] {
+                -moz-tab-size: 12;
+                tab-size: 12;
+            }
+            .markdown-body .task-list-item {
+                list-style-type: none;
+            }
+            .markdown-body .task-list-item+.task-list-item {
+                margin-top: 3px;
+            }
+            .markdown-body .task-list-item input {
+                margin: 0 .2em .25em -1.6em;
+                vertical-align: middle;
+            }
+
+        </style>
+    </head>
+    
+    <body>
+        <div class="main">
+            <div class="background"></div>
+            <article class="markdown-body">
+                <h1>
+                    <a class="anchor" href="#" aria-hidden="true">
+                        <span class="octicon octicon-link"></span>
+                    </a>
+                    Workwise • <i>supercookie</i> 
+                </h1>
+                
+                <h3>
+                    <a id="content-introduction" class="anchor" href="#content-introduction" aria-hidden="true">
+                        <span class="octicon octicon-link"></span>
+                    </a>
+                    Introduction
+                </h3>
+                
+                <blockquote>
+                    <p>
+                        <strong>Data is the new gold!</strong><br>
+                    </p>
+                </blockquote>
+
+                
+                Browsers are the most widespread access medium that makes it incredibly easy for us humans to connect to the Word Wide Web.
+                Due to the constant development of the Internet, such as the continuous elaboration of new standards and features, the introduction of powerful APIs and further interfaces on the browser side, the possibilities for collecting and analyzing data have also significantly expanded over the last few decades!
+                First and foremost, there is nothing at all wrong with collecting data. Every one of us collects data, whether unconsciously in private everyday life or completely consciously in school or at work - collecting data, interpreting it and drawing conclusions is actually incredibly important!
+                <br>
+                With the advent of the WWW and the first online services, data collection also started to become interesting for the service providers, according to the motto - if I own a website on the Internet, I also want to know who is surfing it.
+                However, in most cases we as consumers only want to disclose as little as possible and only the data necessary for the intended service - in fact, my data is no one else's business.
+            
+                The above-mentioned further development of the WWW's capabilities has allowed data to be assigned to individual profiles, enabling the recognition of unique users and the ability to trace their browsing activities even across different pages - the method of "device fingerprinting".
+                Some known methods to assign a unique fingerprint to devices respectively browsers are hardware benchmarking, fingerprinting via Canvas and WebGL or the analysis of active browser extensions.
+                <br>
+                
+                <h3>
+                    <a id="content-background" class="anchor" href="#content-background" aria-hidden="true">
+                        <span class="octicon octicon-link"></span>
+                    </a>
+                    Background
+                </h3>
+
+
+                Modern browsers offer a wide range of features to improve and simplify the user experience.<br>
+                One of these features are the so-called favicons: A <a href="https://en.wikipedia.org/wiki/Favicon">favicon</a> is a small (usually 16×16 or 32×32 pixels) logo used by web browsers to brand a website in a recognizable way. 
+                Favicons are usually shown by most browsers in the address bar and next to the page's name in a list of bookmarks.
+
+                <br><br>
+                To serve a favicon on their website, a developer has to include an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link">&lt;link rel&gt;</a> attribute in the webpage’s header.
+                If this tag does exist, the browser requests the icon from the predefined source. Finally if the server response contains an valid icon file that can be properly rendered this image is displayed by the browser. In any other case, a blank favicon is shown.
+                <br><br>
+                <div class="highlight highlight-source-js">
+                    <pre><span class="pl-ent">&lt;link </span><span class="pl-c1">rel</span><span class="pl-mb">=</span><span class="pl-k">"icon" </span><span class="pl-c1">href</span><span class="pl-mb">=</span><span class="pl-k">"/favicon.ico"</span> </span><span class="pl-c1">type</span><span class="pl-mb">=</span><span class="pl-k">"image/x-icon"</span><span class="pl-ent">&gt;</span></pre>
+                </div>
+
+                The favicons must be made very easily accessible by the browser. Therefore, they are cached in a separate local database on the system, called the favicon cache (F-Cache).
+                The F-Cache data entries include the URL visited (subdomain, domain, route, URL paramter), the favicon ID, and the time to live (TTL). While this provides web developers the ability to delineate parts of their website using a wide variety of icons for individual routes and subdomains, it also leads to a possible tracking scenario.
+                <br>
+                <br>
+                    When a user visits a website, the browser checks after it has been completely transferred if a favicon is needed by looking up the source of the shortcut icon link reference.
+                    The browser first will check the local F-cache for an entry containing the URL of the active website. If a favicon entry exists, the icon will be loaded from the cache and then displayed. 
+                    However, if there is no entry, for example because no favicon has ever been loaded under this particular domain, or the data in the cache is out of date, the browser makes a GET request to the server to load the site's favicon.
+                <br>
+                
+                <h3>
+                    <a id="content-threat-model" class="anchor" href="#content-threat-model" aria-hidden="true">
+                        <span class="octicon octicon-link"></span>
+                    </a>
+                    Threat Model
+                </h3>
+                In the article a possible threat model is explained that allows to assign a unique identifier to each browser in order to draw conclusions about the user and to be able to identify this user even in case of applied anti-fingerprint measures, such as the use of a VPN, deletion of cookies, deletion of the browser cache or manipulation of the client header information.
+                <br><br>
+                A web server can draw conclusions about whether a browser has already loaded a favicon or not:<br>
+                So when the browser requests a web page, if the favicon is not in the local F-cache, another request for the favicon is made. If the icon already exists in the F-Cache, no further request is sent.
+                By appropriately combining delivered favicons for specific URL paths for a browser, a unique identification number can be assigned to it. When the website is reloaded, the web server can reconstruct the identification number with the network requests sent by the client for the missing favicons and thus identify the browser.
+                <br>
+                <br>
+                <br>
+
+                <ol>
+                    <li>
+                        <b>Write</b> identification
+                        <p>
+                            The goal in the write operation is to generate a unique identifier and store it.<br>
+                            First step is to create a new N-bit ID on the server side in the form of a path vector shown below.<br><br>
+                            <strong>Example:</strong>
+                            <div class="highlight highlight-source-js">
+                                <pre><span class="pl-k">const</span> N<span class="pl-k"> = </span><span class="pl-s">4</span>;<br><span class="pl-k">const</span> ROUTES<span class="pl-k"> = </span>[<span class="pl-s"><span class="pl-pds">"</span>/a<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>/b<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>/c<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>/d<span class="pl-pds">"</span></span>];<br><span class="pl-k">const</span> ID<span class="pl-k"> = </span><span class="pl-ms">generateNewID()</span>;<span class="pl-mb"> // -> 1010 • (select any dec number, here ten: 10 -> 1010b in binary)</span></pre>
+                            </div>
+                            <div class="highlight highlight-source-js">
+                                <pre><span class="pl-k">const</span> vector<span class="pl-k"> = </span><span class="pl-ms">generateVectorFromID(<span class="pl">ID</span>)</span>;<span class="pl-mb"> // -> ["/a", "/c"] • (because [a, b, c, d] where [1, 0, 1, 0] is 1 -> a, c)</span></pre>
+                            </div>
+                        </p>
+                        Second step is to store the actual data inside the browser:<br>
+                        The user will be redirected along all of the website paths, starting at <i>/a</i>, navigating to <i>/b</i>, to <i>/c</i> and finally to route <i>/d</i>.
+
+                        <ul>
+                            <li>/a</li>
+                            <li>/b</li>
+                            <li>/c</li>
+                            <li>/d</li>
+                        </ul>
+                        While the user is redirected on every load the browser requests a favicon for the respective route, going the same way like<i>/a/favicon.ico</i>, to <i>/b/favicon.ico</i>, to <i>/c/favicon.ico</i> and finally to <i>/d/favicon.ico</i>.
+                        <ul>
+                            <li>/a/favicon.ico</li>
+                            <li>/b/favicon.ico</li>
+                            <li>/c/favicon.ico</li>
+                            <li>/d/favicon.ico</li>
+                        </ul>
+
+                        <br>
+
+                        The webserver will now only process those favicon requests whose path is present in the previously created path vector. In this case the webserver answers with the favicon and StatusCode 200.<br>
+                        However, if the requested route is not in the path vector, the webserver aborts the request with an error code, or sends no response at all.<br>
+                        Since the browser - as described earlier - only stores the delivered favicons in the F-Cache, we have now stored our unique identification number and the writing process is complete. <br><br>
+                        In the above example, the webserver only responds to requests for the favicons under paths <i>/a/favicon.ico</i> and <i>/c/favicon.ico</i>. The F-Cache only has favicons-entries for these two paths.<br>
+
+
+                        <img class="diagram-image" src="./assets/diagram-write-dark.svg">
+
+                        <br>
+                        
+                    </li>
+                    <br>
+                    <br>
+                    <li>
+                        <b>Read</b> identification
+                        <p>
+                            Here the goal is to re-identify a returning user based on his existing F-Cache entries.<br><br>
+                            In read mode the server always responds to favicon requests with an error status code (404), but responds normally to all other requests. 
+                            This preserves the integrity of the cached favicons during the read operation, since no new F-cache entry is created by the browser.<br>
+                            To reconstruct a visitor's identifier, we must route the browser through all available paths and wait to see which favions are requested by the browser (those that are not present in the browsers F-cache).
+                            <br>
+                            <br>
+                            <strong>Example:</strong>
+                            <div class="highlight highlight-source-js">
+                                <pre><span class="pl-k">const</span> visitedRoutes<span class="pl-k"> = </span><span class="pl">[]</span>;<br><span class="pl-k">Webserver.onvisit</span><span class="pl-k"> = <span class="pl">(route)</span> => </span><span class="pl-s"><span class="pl">visitedRoutes.<span class="pl-s">push(</span></span></span>route<span class="pl-s">)</span>; <span class="pl-mb"> // -> ["/b", "/d"]</span><br><span class="pl-k">Webserver.ondone</span><span class="pl-k"> = <span class="pl">()</span> => </span><span class="pl-s"><span class="pl">{ <span class="pl-k">const</span> ID = <span class="pl-ms">getIDFromVector(</span></span></span>visitedRoutes<span class="pl-ms">)</span> };<span class="pl-mb"> // -> 10 • (because "/a" and "/b" are missing -> 1010b)</span></pre>
+                            </div>
+                            The server can thus reconstruct the identification from the missing favicon requests and the reading process is complete.
+                            <br>
+                        </p>
+
+                        <img class="diagram-image" src="./assets/diagram-read-dark.svg">
+                        <br>
+                    </li>
+                </ol>
+                
+                <h3>
+                    <a id="content-target" class="anchor" href="#content-target" aria-hidden="true">
+                        <span class="octicon octicon-link"></span>
+                    </a>
+                    Target
+                </h3>
+
+                It looks like all top browsers are vulnerable to this attack scenario. <br>Mobile browsers are also affected.<br><br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Browser</th>
+                            <th align="center">Windows</th>
+                            <th align="center">MacOS</th>
+                            <th align="center">Linux</th>
+                            <th align="center">iOS</th>
+                            <th align="center">Android</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chrome <em>(v 87.0)</em></td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                        </tr>
+                        <tr>
+                            <td>Safari <em>(v 14.0)</em></td>
+                            <td align="center">-</td>
+                            <td align="center">✅</td>
+                            <td align="center">-</td>
+                            <td align="center">❌</td>
+                            <td align="center">-</td>
+                        </tr>
+                        <tr>
+                            <td>Edge <em>(v 87)</em></td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">❌</td>
+                            <td align="center">-</td>
+                            <td align="center">✅</td>
+                        </tr>
+                        <tr>
+                            <td>Firefox <em>(v x)</em></td>
+                            <td align="center">-</td>
+                            <td align="center">-</td>
+                            <td align="center">-</td>
+                            <td align="center">-</td>
+                            <td align="center">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <h3>
+                    <a id="content-scalability-performance" class="anchor" href="#content-scalability-performance" aria-hidden="true">
+                        <span class="octicon octicon-link"></span>
+                    </a>
+                    Scalability & Performance
+                </h3>
+
+                By varying the number of bits that corresponds to the number of redirects to subpaths, this attack can be scaled almost arbitrarily.<br>
+                It can distinguish 2^N unique users , where N is the number of redirects on the client side.<br>
+                The time taken for the read and write operation increases as the number of distinguishable clients does:
+                <br><br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Redirects (N bit)</th>
+                            <th>distinguishable clients</th>
+                            <th>write time</th>
+                            <th>read time</th>
+                            <th>scale information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center">2</em></td>
+                            <td align="center">4</td>
+                            <td>30ms</td>
+                            <td>20ms</td>
+                            <td>One user with four browsers</td>
+                        </tr>
+                        <tr>
+                            <td align="center">3</em></td>
+                            <td align="center">8</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>About the amount of Kardashians</td>
+                        </tr>
+                        <tr>
+                            <td align="center">4</em></td>
+                            <td align="center">16</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Bunch of your neighbors</td>
+                        </tr>
+                        <tr>
+                            <td align="center">8</em></td>
+                            <td align="center">256</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>All your facebook-friends</td>
+                        </tr>
+                        <tr>
+                            <td align="center">10</em></td>
+                            <td align="center">1024</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Really small village</td>
+                        </tr>
+                        <tr>
+                            <td align="center">20</em></td>
+                            <td align="center">1,048,576</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Small city (San Jose, California)</td>
+                        </tr>
+                        <tr>
+                            <td align="center">24</em></td>
+                            <td align="center">16,777,216</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Whole Netherlands</td>
+                        </tr>
+                        <tr>
+                            <td align="center">32</em></td>
+                            <td align="center">4,294,967,296</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>All people with internet access</td>
+                        </tr>
+                        <tr>
+                            <td align="center">34</em></td>
+                            <td align="center">17,179,869,184</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>All people with internet access each using 4 different browsers</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+            </article>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>id • {{hash}}</title>
+        <meta name="viewport" content="viewport-fit=cover, user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+        <style>
+            html, body {
+                margin: 0px;
+                width: 100%;
+                height: 100%;
+                padding: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(32, 32, 32);
+                color: white;
+                font-size: large;
+                font-family: sans-serif;
+            }
+            .main {
+                position: absolute;
+                z-index: 1;
+                width: 90%;
+                display: flex;
+                left: 0;
+                right: 0;
+                margin: auto;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                border: 2px solid #ffffff17;
+                border-radius: 10px;
+                padding: 3%;
+                background-color: #191919;
+            }
+            .identifier-container div {
+                font-weight: bold;
+                text-align: center;
+            }
+            .identifier-container a {
+                color: #ff0358;
+                font-weight: normal;
+                white-space: nowrap;
+            }
+            .identifier-container img {
+                width: 100%;
+                min-width: 50%;
+            }
+            .button-container {
+                width: 80%;
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            .button-container > .button {
+                width: 150px;
+                height: 60px;
+                margin: 5px;
+                background-color: #73c53c;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+                font-size: medium;
+                color: white!important;
+                text-decoration: none!important;
+                text-align: center;
+                display: flex;
+            }
+            .button-container > .button.blue {
+                background-color: #20aee4;
+                font-weight: bold;
+            }
+            .button-container > .button.red {
+                background-color: #de3f37
+            }
+            .button:hover {
+                opacity: 0.8;
+                transform: scale(0.95);
+            }
+            .button:active {
+                opacity: 0.5;
+                transform: scale(1.01);
+            }
+            * {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                transition: all 0.3s;
+            }
+            .button > i {
+                width: 25%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+            .button > div {
+                width: 75%;
+            }
+            .identifier-hash {
+                -webkit-user-select: text;
+                -moz-user-select: text;
+                -ms-user-select: text;
+                user-select: text;
+            }
+            .identifier-hash:hover {
+                transform: scale(1.1);
+            }
+            .speechbubble {
+                position: relative;
+                max-width: 30em;
+                background-color: #292929;
+                padding: 1.125em 1.5em;
+                font-size: 1.25em;
+                border-radius: 1rem;
+                box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+            }
+            .speechbubble::before {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 0;
+                bottom: 100%;
+                left: 2.5em;
+                border: .75rem solid transparent;
+                border-top: none;
+                border-bottom-color: #292929;
+                filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+            }
+            .background {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-image: url(./assets/background.png);
+                opacity: 0.05;
+            }
+            small {
+                color: white;
+                font-size: x-small;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="background"></div>
+        <div class="main">
+            <div class="identifier-container">
+                <div>
+                    <img src="./assets/header.png">
+                    <p class="speechbubble">
+                        Your ID: <a class="identifier-hash" onclick="window.getSelection().selectAllChildren(this); document.execCommand('copy');">{{hash}}</a> <small>(#{{identifier}})</small>
+                    </p>
+                </div>
+            </div>
+            <div class="button-container">
+                <a class="button" href="/">
+                    <i class="material-icons">cached</i>
+                    <div>Try Again</div>
+                </a>
+                <a class="button blue" href="/workwise">
+                    <i class="material-icons">help</i>
+                    <div>How does it work?</div>
+                </a>
+                <a class="button red" target="_blank" href="https://github.com/jonasstrehle/supercookie.me">
+                    <i class="material-icons">source</i>
+                    <div>Get Source-Code</div>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
