@@ -7,6 +7,7 @@
         <meta name="robots" content="noindex"/>
         <meta name="viewport" content="viewport-fit=cover, user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,700&display=swap" rel="stylesheet dns-prefetch preconnect" crossorigin="">
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
         <style>
             html, body {
@@ -20,12 +21,12 @@
                 background-color: rgb(32, 32, 32);
                 color: white;
                 font-size: large;
-                font-family: sans-serif;
+                font-family: Muli, sans-serif;
             }
             .main {
                 position: absolute;
                 z-index: 1;
-                width: 90%;
+                width: 88%;
                 display: flex;
                 left: 0;
                 right: 0;
@@ -33,10 +34,10 @@
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
-                border: 2px solid #ffffff17;
-                border-radius: 10px;
-                padding: 3%;
-                background-color: #191919;
+                border-radius: 50px;
+                background: #202020;
+                box-shadow: 11px 11px 22px #1b1b1b, -11px -11px 22px #252525;
+                padding: 2%;
             }
             .identifier-container div {
                 font-weight: bold;
@@ -154,7 +155,7 @@
     <body>
         <div class="background"></div>
         <div class="main">
-            <div class="identifier-container">
+            <div class="identifier-container" onclick="document.location.href='https://supercookie.me'">
                 <div>
                     <img src="/assets/header.png">
                     <p class="speechbubble">

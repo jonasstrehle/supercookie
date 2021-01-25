@@ -7,9 +7,9 @@
         <meta name="keywords" content="JavaScript, Web, Fingerprinting, Favicons, Cache, Anonym, Security, Browser"/>
         <meta name="author" content="Jonas Strehle"/>
         <meta name="robots" content="noindex"/>
-
         <meta name="viewport" content="viewport-fit=cover, user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,700&display=swap" rel="stylesheet dns-prefetch preconnect" crossorigin="">
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
         <style>
             html, body {
@@ -23,7 +23,7 @@
                 background-color: #151d32;
                 color: white;
                 font-size: large;
-                font-family: sans-serif;
+                font-family: Muli, sans-serif;
             }
             .main {
                 width: 100%;
@@ -68,7 +68,6 @@
                 -ms-text-size-adjust: 100%;
                 -webkit-text-size-adjust: 100%;
                 line-height: 1.5;
-                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
                 font-size: 16px;
                 line-height: 1.5;
                 word-wrap: break-word;
@@ -869,11 +868,49 @@
                 vertical-align: middle;
             }
 
+
+            .tag {
+                margin: 3px;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 20px;
+                background: #101625;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                transition: all 0.3s;
+                z-index: 3;
+            }
+            .tag a {
+                text-decoration: none!important;
+                color: #656565!important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .tag:hover {
+                transform: scale(0.92);
+            }
+            .tag:hover a {
+                color: rgba(255, 255, 255, 0.6)!important;
+            }
+            .tag > img {
+                width: 90%;
+            }
+
         </style>
     </head>
     
     <body>
         <div class="main">
+            <div class="tag">
+                <a href="https://supercookie.me">
+                    <span class="material-icons-outlined">home</span>
+                </a>
+            </div>
             <div class="background"></div>
             <article class="markdown-body">
                 <h1>
