@@ -2,9 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>supercookie</title>
+        <title>supercookie • welcome</title>
         <meta name="viewport" content="viewport-fit=cover, user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel="shortcut icon" href="/l/{{favicon}}" type="image/x-icon"/>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,700&display=swap" rel="stylesheet dns-prefetch preconnect" crossorigin="">
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
         <style>
             html, body {
                 margin: 0px;
@@ -17,20 +21,170 @@
                 background-color: rgb(32, 32, 32);
                 color: white;
                 font-size: large;
-                font-family: sans-serif;
+                font-family: Muli,sans-serif;
+            }
+            .main {
+                position: absolute;
+                z-index: 1;
+                width: 90%;
+                display: flex;
+                left: 0;
+                right: 0;
+                margin: auto;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            h1 {
+                text-align: center;
+            }
+            h1 b {
+                color: orange;
+            }
+            .background {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-image: url(/assets/background.png);
+                opacity: 0.05;
+            }
+            .action-button {
+                text-decoration: none!important;
+                color: white!important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50px;
+                background: #202020;
+                box-shadow: 20px 20px 60px #0e0e0e, -20px -20px 60px #323232;
+                padding: 20px;
+            }
+            .action-button i {
+                color: orange!important;
+            }
+            .action-button:hover {
+                opacity: 0.8;
+                color: orange!important;
+                box-shadow: 20px 20px 80px #0e0e0e, -20px -20px 80px #323232;
+            }
+            .action-button:hover > i {
+                opacity: 0.8;
+                transform: scale(1.2);
+                color: white!important;
+            } 
+            * {
+                transition: all 0.4s;
+            }
+            .action-button i {
+                margin-right: 8px;
+                color: orange;
+            }
+            .tag-container {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            .tag {
+                margin: 3px;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 20px;
+                background: #1a1a1a;
+            }
+            .tag a {
+                text-decoration: none!important;
+                color: #656565!important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .tag:hover {
+                transform: scale(0.92);
+            }
+            .tag:hover a {
+                color: rgba(255, 255, 255, 0.6)!important;
+            }
+            .tag > img {
+                width: 90%;
+            }
+
+            .footer {
+                position: absolute;
+                bottom: 30px;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 90%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+            }
+            @media only screen and (max-width: 767px), only screen and (max-device-width: 767px) {
+                .footer {
+                    display: none;
+                }
+            }
+            .bmc-btn {
+                height: 50px!important;
+            }
+            .footer > div {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+            .footer > div > div {
+                margin-right: 18px;
+            }
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .github-button {
+                color: white!important;
+                text-decoration: none!important;
             }
         </style>
     </head>
     
     <body>
-        <h1>...</h1>
-        <script type="module">
-            window.onload = async () => {
-                await new Promise((resolve) => setTimeout(resolve, 500));
-                const route = (document.cookie.match(new RegExp(`(^| )mid=([^;]+)`)) || [])[2] ? "/write" : "/read";
-                document.cookie.split(";").forEach((c) => document.cookie = c.replace(/^ +/, "").replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`));
-                window.location.href = route;
-            }
-        </script>
+
+        <div class="background"></div>
+        <div class="tag-container">
+            <div class="tag">
+                <a href="/workwise">
+                    <span class="material-icons-outlined">help</span>
+                </a>
+            </div>
+            <div class="tag">
+                <a href="https://jonas.strehles.info">
+                    <span class="material-icons-outlined">add</span>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="main">
+            <h1>Browser-Fingerprinting<br>via <b>Favicon</b></h1>
+            
+            <a class="action-button" href="https://demo.supercookie.me"><i class="material-icons-outlined">visibility</i>To the Demo!</a>
+        </div>
+
+        <div class="footer">
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="jonasstrehle" data-color="#f4a00a" data-emoji="" data-font="Cookie" data-text="Buy me a cookie" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+            <div>
+                <div>This project is now <b>Open-Source</b>!</div>
+                <a class="github-button" href="https://github.com/jonasstrehle/supercookie" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star jonasstrehle/supercookie on GitHub">Star on GitHub</a>
+            </div>
+        </div>
     </body>
 </html>

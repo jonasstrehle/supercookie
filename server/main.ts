@@ -277,7 +277,7 @@ webserver_2.get(`/${CACHE_IDENTIFIER}`, (req: express.Request, res: express.Resp
     if (!rid) 
         Webserver.sendFile(res, path.join(path.resolve(), "www/redirect.html"));
     else
-        Webserver.sendFile(res, path.join(path.resolve(), "www/index.html"), {
+        Webserver.sendFile(res, path.join(path.resolve(), "www/launch.html"), {
             favicon: CACHE_IDENTIFIER
         });
 });
@@ -326,10 +326,11 @@ webserver_2.get("/f/:ref", (req: express.Request, res: express.Response) => {
     res.end(data);
 });
 webserver_1.use(express.static(path.join(path.resolve(), "www"), { index: false, extensions: ["html"] }));
-webserver_1.get("*", (req: express.Request, res: express.Response) => {
-    Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
-        path: decodeURIComponent(req.path)
-    });
+webserver_1.get('/', (_req: express.Request, res: express.Response) => {
+    Webserver.sendFile(res, path.join(path.resolve(), "www/index.html"));
+});
+webserver_1.get("*", (_req: express.Request, res: express.Response) => {
+    res.redirect('/');
 });
 webserver_2.get("*", (req: express.Request, res: express.Response) => {
     Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {

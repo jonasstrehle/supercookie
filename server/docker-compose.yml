@@ -31,21 +31,6 @@ services:
     volumes:
       - ./letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.proxy-https.rule=Host(`proxy.supercookie.me`)"
-      - "traefik.http.routers.proxy-https.entrypoints=web-secure"
-      - "traefik.http.routers.proxy-https.tls=true"
-      - "traefik.http.routers.proxy-https.service=api@internal"
-      - "traefik.http.routers.proxy-https.middlewares=traefik-auth"
-      - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$slBHbCEP$$O81Z20epryzFYfNQ1IvPf0"
-        # admin:Th1s1sTh30n34nd0nlyExm4tr1cul4t0r
-        # generate via - echo $(htpasswd -nb username password) | sed -e s/\\$/\\$\\$/g
-      - "traefik.http.routers.proxy-http.rule=Host(`proxy.supercookie.me`)"
-      - "traefik.http.routers.proxy-http.entrypoints=web"
-      - "traefik.http.routers.proxy-http.middlewares=https_redirect"
-      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.https_redirect.redirectscheme.permanent=true"
 
   supercookie:
     container_name: supercookie-web
