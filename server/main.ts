@@ -81,12 +81,13 @@ const STORAGE: any = new Storage().content;
 /**
  * configurable options
  */
-const WEBSERVER_PORT: number = 10080;
+const WEBSERVER_PORT_1: number = 10080;
+const WEBSERVER_PORT_2: number = 10081;
 const CACHE_IDENTIFIER: string = STORAGE.cacheID ?? generateUUID("xxxxxxxx", "0123456789abcdef");
 const N: number = 10;
 
-
-const server: express.Express = express();
+const webserver_1: express.Express = express();
+const webserver_2: express.Express = express();
 const maxN: number = 2**N - 1;
 
 /**
@@ -209,15 +210,15 @@ class Profile {
 /**
  * Webserver setup
  */
-server.set("trust proxy", 1);
-server.use(cookieParser());
-server.use((req: express.Request, res: express.Response, next: Function) => {  
+webserver_2.set("trust proxy", 1);
+webserver_2.use(cookieParser());
+webserver_2.use((req: express.Request, res: express.Response, next: Function) => {  
     res.header("Access-Control-Allow-Origin", req.headers.origin);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
-server.get("/read", (_req: express.Request, res: express.Response) => {
+webserver_2.get("/read", (_req: express.Request, res: express.Response) => {
     const uid = generateUUID();
     const profile: Profile = Profile.from(uid);
     if (profile === null)
@@ -226,7 +227,7 @@ server.get("/read", (_req: express.Request, res: express.Response) => {
     res.redirect(`/t/${Webserver.getRouteByIndex(0)}`);
 });
 
-server.get("/write", (_req: express.Request, res: express.Response) => {
+webserver_2.get("/write", (_req: express.Request, res: express.Response) => {
     const uid = generateUUID();
     const profile: Profile = Profile.from(uid, STORAGE.index);
     if (profile === null)
@@ -236,7 +237,7 @@ server.get("/write", (_req: express.Request, res: express.Response) => {
     res.redirect(`/t/${Webserver.getRouteByIndex(0)}`);
 });
 
-server.get("/t/:ref", (req: express.Request, res: express.Response) => {
+webserver_2.get("/t/:ref", (req: express.Request, res: express.Response) => {
     const referrer: string = req.params.ref;
     const uid: string = req.cookies.uid;
     const profile: Profile = Profile.get(uid);
@@ -253,7 +254,7 @@ server.get("/t/:ref", (req: express.Request, res: express.Response) => {
     });
 });
 
-server.get("/identity", (req: express.Request, res: express.Response) => {
+webserver_2.get("/identity", (req: express.Request, res: express.Response) => {
     const uid: string = req.cookies.uid;
     const profile: Profile = Profile.get(uid);
     if (profile === null)
@@ -270,7 +271,7 @@ server.get("/identity", (req: express.Request, res: express.Response) => {
     });
 });
 
-server.get(`/${CACHE_IDENTIFIER}`, (req: express.Request, res: express.Response) => {
+webserver_2.get(`/${CACHE_IDENTIFIER}`, (req: express.Request, res: express.Response) => {
     const rid: boolean = !!req.cookies.rid;
     res.clearCookie("rid");
     if (!rid) 
@@ -281,13 +282,13 @@ server.get(`/${CACHE_IDENTIFIER}`, (req: express.Request, res: express.Response)
         });
 });
 
-server.get('/', (_req: express.Request, res: express.Response) => {
+webserver_2.get('/', (_req: express.Request, res: express.Response) => {
     Webserver.setCookie(res, "rid", true);
     res.clearCookie("mid");
     res.redirect(`/${CACHE_IDENTIFIER}`);
 });
 
-server.get("/l/:ref", (_req: express.Request, res: express.Response) => {
+webserver_2.get("/l/:ref", (_req: express.Request, res: express.Response) => {
     console.log("new visitor", Date.now());
     Webserver.setCookie(res, "mid", true, { expires: null });
     const data = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=", "base64");
@@ -300,7 +301,7 @@ server.get("/l/:ref", (_req: express.Request, res: express.Response) => {
     res.end(data);
 });
 
-server.get("/f/:ref", (req: express.Request, res: express.Response) => {
+webserver_2.get("/f/:ref", (req: express.Request, res: express.Response) => {
     const referrer: string = req.params.ref;
     const uid: string = req.cookies.uid;
     if (!Profile.has(uid) || !Webserver.hasRoute(referrer))
@@ -324,13 +325,19 @@ server.get("/f/:ref", (req: express.Request, res: express.Response) => {
     });
     res.end(data);
 });
-server.use(express.static(path.join(path.resolve(), "www"), { index: false, extensions: ["html"] }));
-server.get("*", (req: express.Request, res: express.Response) => {
+webserver_1.use(express.static(path.join(path.resolve(), "www"), { index: false, extensions: ["html"] }));
+webserver_1.get("*", (req: express.Request, res: express.Response) => {
     Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
         path: decodeURIComponent(req.path)
     });
 });
-server.listen(WEBSERVER_PORT, () => console.log(`express | Express server running on port ${WEBSERVER_PORT}`));
+webserver_2.get("*", (req: express.Request, res: express.Response) => {
+    Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
+        path: decodeURIComponent(req.path)
+    });
+});
+webserver_1.listen(WEBSERVER_PORT_1, () => console.log(`express | Express webserver_1 running on port ${WEBSERVER_PORT_1}`));
+webserver_2.listen(WEBSERVER_PORT_2, () => console.log(`express | Express webserver_2 running on port ${WEBSERVER_PORT_2}`));
 
 STORAGE.index = STORAGE.index ?? 0;
 STORAGE.cacheID = CACHE_IDENTIFIER;
