@@ -27,9 +27,6 @@ The demo of "supercookie" as well as the publication of the source code of this 
 
 📕 [Full documentation](https://demo.supercookie.me/workwise)
 
-
-<br>
-
 ## Installation
 
 ### Docker
@@ -78,9 +75,6 @@ node main.js
 -> Webserver will be running at http://localhost:10080
 
 
-<br>
-
-
 ## Workwise of [supercookie](https://supercookie.me/workwise)
 
 
@@ -116,7 +110,7 @@ When the website is reloaded, the web server can reconstruct the identification 
 
 <p align="center">
   <a href="https://supercookie.me">
-    <img src="https://supercookie.me/assets/header.png" alt="Pro screenshot" width="697px" />
+    <img src="https://supercookie.me/assets/header.png" alt="Supercookie Header" width="600px" />
   </a>
 </p>
 
@@ -124,28 +118,107 @@ When the website is reloaded, the web server can reconstruct the identification 
   <thead>
     <tr>
       <th></th>
-      <!-- The <img>s are to make the table take the full width -->
-      <th align="center"><img width="350" height="0"> <p>Open Source version</p></th>
-      <th align="center"><img width="350" height="0"> <p>Pro version</p></th>
+      <th align="center"><img width="350" height="0"> <p>conventional cookies</p></th>
+      <th align="center"><img width="350" height="0"> <p>supercookie</p></th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>Identification accuracy</td><td align="center">60%</td><td align="center">99.5%</td></tr>
-    <tr><td>Incognito / Private mode detection</td><td align="center">❌</td><td align="center">✅</td></tr>
-    <tr><td>Geolocation</td><td align="center">❌</td><td align="center">✅</td></tr>
-    <tr><td>Security</td><td align="center">❌</td><td align="center">✅</td></tr>
-    <tr><td>Server API</td><td align="center">❌</td><td align="center">✅</td></tr>
-    <tr><td>Webhooks</td><td align="center">❌</td><td align="center">✅</td></tr>
-    <tr><td>Stable identifier between versions</td><td align="center">❌</td><td align="center">✅</td></tr>
+    <tr>
+      <td>Identification accuracy</td>
+      <td align="center">-</td>
+      <td align="center">100%</td>
+    </tr>
+    <tr>
+      <td>Incognito / Private mode detection</td>
+      <td align="center">❌</td>
+      <td align="center">✅</td>
+    </tr>
+    <tr>
+      <td>Persistent after flushed website cache and cookies</td>
+      <td align="center">❌</td>
+      <td align="center">✅</td>
+    </tr>
+    <tr>
+      <td>Identify multiple windows</td>
+      <td align="center">❌</td>
+      <td align="center">✅</td>
+    </tr>
   </tbody>
 </table>
 
-<br>
 
 ## [Target](https://supercookie.me/workwise#content-target)
 
-It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12px"> [Chrome](https://google.com/chrome/), <img src="https://www.apple.com/favicon.ico" width="12px"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12px"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.
+It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12px"> [Chrome](https://google.com/chrome/), <img src="https://www.apple.com/favicon.ico" width="12px"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12px"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.<br>
 Mobile browsers are also affected.
 
 
-## About me
+<table>
+  <thead>
+    <tr>
+      <th align="center"><p>Browser</p></th>
+      <th align="center"><p>Windows</p></th>
+      <th align="center"><p>MacOS</p></th>
+      <th align="center"><p>Linux</p></th>
+      <th align="center"><p>iOS</p></th>
+      <th align="center"><p>Android</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Chrome</b> (v 87.0)</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+    </tr>
+    <tr>
+      <td><b>Safari</b> (v 14.0)</td>
+      <td align="center">-</td>
+      <td align="center">✅</td>
+      <td align="center">-</td>
+      <td align="center">❌</td>
+      <td align="center">-</td>
+    </tr>
+    <tr>
+      <td><b>Safari</b> (v 14.0)</td>
+      <td align="center">-</td>
+      <td align="center">✅</td>
+      <td align="center">-</td>
+      <td align="center">❌</td>
+      <td align="center">-</td>
+    </tr>
+    <tr>
+      <td><b>Edge</b> (v 87.0)</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+      <td align="center">❌</td>
+      <td align="center">-</td>
+      <td align="center">✅</td>
+    </tr>
+    <tr>
+      <td><b>Firefox</b> (v x)</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+    </tr>
+  </tbody>
+</table>
+
+
+## [Scalability & Performance](https://supercookie.me/workwise#content-scalability-performance)
+
+By varying the number of bits that corresponds to the number of redirects to subpaths, this attack can be scaled almost arbitrarily.
+It can distinguish 2^N unique users , where N is the number of redirects on the client side.
+The time taken for the read and write operation increases as the number of distinguishable clients does.
+
+
+
+## [About me](https://jonas.strehles.info)
+
+I am a twenty year old student from 🇩🇪 Germany. I like to work in software design and development and have an interest in the IT security domain.
+
+This repository, including the setup of a demonstration portal, was created within two days as part of a private research project on the topic of "Tracking on the Web".
