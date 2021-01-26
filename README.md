@@ -78,7 +78,7 @@ node main.js
 ## Workwise of [supercookie](https://supercookie.me/workwise)
 
 
-### [Background](https://supercookie.me/workwise#content-background)
+### [📖 Background](https://supercookie.me/workwise#content-background)
 
 Modern browsers offer a wide range of features to improve and simplify the user experience.
 One of these features are the so-called favicons: A favicon is a small (usually 16×16 or 32×32 pixels) logo used by web browsers to brand a website in a recognizable way. Favicons are usually shown by most browsers in the address bar and next to the page's name in a list of bookmarks.
@@ -96,7 +96,7 @@ When a user visits a website, the browser checks if a favicon is needed by looki
 The browser initialy checks the local F-cache for an entry containing the URL of the active website. If a favicon entry exists, the icon will be loaded from the cache and then displayed. However, if there is no entry, for example because no favicon has ever been loaded under this particular domain, or the data in the cache is out of date, the browser makes a GET request to the server to load the site's favicon.
 
 
-### [Thread Model](https://supercookie.me/workwise#content-threat-model)
+### [💣 Thread Model](https://supercookie.me/workwise#content-threat-model)
 
 In the article a possible threat model is explained that allows to assign a unique identifier to each browser in order to draw conclusions about the user and to be able to identify this user even in case of applied anti-fingerprint measures, such as the use of a VPN, deletion of cookies, deletion of the browser cache or manipulation of the client header information.
 
@@ -147,7 +147,7 @@ When the website is reloaded, the web server can reconstruct the identification 
 </table>
 
 
-## [Target](https://supercookie.me/workwise#content-target)
+## [🎯 Target](https://supercookie.me/workwise#content-target)
 
 It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12px"> [Chrome](https://google.com/chrome/), <img src="https://www.apple.com/favicon.ico" width="12px"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12px"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.<br>
 Mobile browsers are also affected.
@@ -209,7 +209,7 @@ Mobile browsers are also affected.
 </table>
 
 
-## [Scalability & Performance](https://supercookie.me/workwise#content-scalability-performance)
+## [⚙ Scalability & Performance](https://supercookie.me/workwise#content-scalability-performance)
 
 By varying the number of bits that corresponds to the number of redirects to subpaths, this attack can be scaled almost arbitrarily.
 It can distinguish 2^N unique users , where N is the number of redirects on the client side.
@@ -217,13 +217,13 @@ The time taken for the read and write operation increases as the number of disti
 
 
 
-## [About me](https://jonas.strehles.info)
+## [🙎‍♂️ About me](https://jonas.strehles.info)
 
 I am a twenty year old student from 🇩🇪 Germany. I like to work in software design and development and have an interest in the IT security domain.
 
 This repository, including the setup of a demonstration portal, was created within two days as part of a private research project on the topic of "Tracking on the Web".
 
 
-## [Donate](https://ko-fi.com/jonasstrehle)
+## [💖 Support the project](https://ko-fi.com/jonasstrehle)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jonasstrehle)
