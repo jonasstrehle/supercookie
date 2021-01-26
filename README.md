@@ -4,9 +4,6 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/jonasstrehle/supercookie/actions?workflow=Lint%20and%20test">
-    <img src="https://github.com/jonasstrehle/supercookie/workflows/Lint%20and%20test/badge.svg" alt="Build status">
-  </a>
   <a href="https://github.com/jonasstrehle/supercookie">
     <img src="https://img.shields.io/github/downloads/jonasstrehle/supercookie/total.svg" alt="Total downloads from GitHub">
   </a>
