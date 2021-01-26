@@ -16,7 +16,7 @@ The tracking method works even in the browser's ingoknito mode and is not cleare
 
 ## About
 
-### Purpose
+### 🪧 Purpose
 
 This repository is for **educational** and **demonstration purposes** only!
 
@@ -26,7 +26,7 @@ The demo of "supercookie" as well as the publication of the source code of this 
 
 ## Installation
 
-### Docker
+### 🔧 Docker
 **requirements**: 
 <img src="https://docs.docker.com/favicon.ico" width="12px"> [Docker daemon](https://docs.docker.com/get-docker/)
 
@@ -144,7 +144,7 @@ When the website is reloaded, the web server can reconstruct the identification 
 </table>
 
 
-## [🎯 Target](https://supercookie.me/workwise#content-target)
+### [🎯 Target](https://supercookie.me/workwise#content-target)
 
 It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12px"> [Chrome](https://google.com/chrome/), <img src="https://www.apple.com/favicon.ico" width="12px"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12px"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.<br>
 Mobile browsers are also affected.
@@ -206,21 +206,23 @@ Mobile browsers are also affected.
 </table>
 
 
-## [⚙ Scalability & Performance](https://supercookie.me/workwise#content-scalability-performance)
+### [⚙ Scalability & Performance](https://supercookie.me/workwise#content-scalability-performance)
 
 By varying the number of bits that corresponds to the number of redirects to subpaths, this attack can be scaled almost arbitrarily.
 It can distinguish 2^N unique users , where N is the number of redirects on the client side.
 The time taken for the read and write operation increases as the number of distinguishable clients does.
 
 
+## Other
 
-## [🙎‍♂️ About me](https://jonas.strehles.info)
+### [🙎‍♂️ About me](https://jonas.strehles.info)
 
 I am a twenty year old student from 🇩🇪 Germany. I like to work in software design and development and have an interest in the IT security domain.
 
 This repository, including the setup of a demonstration portal, was created within two days as part of a private research project on the topic of "Tracking on the Web".
 
 
-## [💖 Support the project](https://ko-fi.com/jonasstrehle)
+### [💖 Support the project](https://ko-fi.com/jonasstrehle)
+
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jonasstrehle)
