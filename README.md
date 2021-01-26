@@ -195,9 +195,9 @@ Mobile browsers are also affected.
       <td align="center">✅</td>
     </tr>
     <tr>
-      <td><b>Firefox</b> (v x)</td>
+      <td><b>Firefox</b> (v 84.0)</td>
       <td align="center">-</td>
-      <td align="center">-</td>
+      <td align="center">✅</td>
       <td align="center">-</td>
       <td align="center">-</td>
       <td align="center">-</td>

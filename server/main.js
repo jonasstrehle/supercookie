@@ -211,7 +211,7 @@ webserver_2.get("/t/:ref", (req, res) => {
     const nextReferrer = Webserver.getNextRoute(referrer);
     if (profile._isReading() && profile.visited.has(referrer))
         return res.redirect('/');
-    Webserver.sendFile(res, path.join(path.resolve(), "www/referrer.html"), {
+    Webserver.sendFile(res, path.join(path.resolve(), "www/referrer-v2.html"), {
         referrer: nextReferrer ? `t/${nextReferrer}?x=${Math.random() * 10000}` : profile._isReading() ? "identity" : "",
         favicon: referrer,
         mode: profile._isReading() ? 'r' : 'w',
