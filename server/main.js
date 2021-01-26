@@ -308,13 +308,10 @@ webserver_2.get("/favicon.ico", (_req, res) => {
 webserver_1.get("/workwise", (_req, res) => {
     res.sendFile(path.join(path.resolve(), "www/workwise.html"));
 });
-webserver_2.get("/workwise", (_req, res) => {
-    res.sendFile(path.join(path.resolve(), "www/workwise.html"));
-});
-webserver_1.get("*", (_req, res) => {
+webserver_1.get('*', (_req, res) => {
     res.redirect('/');
 });
-webserver_2.get("*", (req, res) => {
+webserver_2.get('*', (req, res) => {
     Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
         path: decodeURIComponent(req.path)
     });

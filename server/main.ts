@@ -346,7 +346,6 @@ webserver_2.get("/f/:ref", (req: express.Request, res: express.Response) => {
     res.end(data);
 });
 
-// webserver_1.use(express.static(path.join(path.resolve(), "www"), { index: false, extensions: ["html"] }));
 webserver_1.use("/assets", express.static(path.join(path.resolve(), "www/assets"), { index: false }));
 webserver_2.use("/assets", express.static(path.join(path.resolve(), "www/assets"), { index: false }));
 webserver_1.get('/', (_req: express.Request, res: express.Response) => {
@@ -361,13 +360,10 @@ webserver_2.get("/favicon.ico", (_req: express.Request, res: express.Response) =
 webserver_1.get("/workwise", (_req: express.Request, res: express.Response) => {
     res.sendFile(path.join(path.resolve(), "www/workwise.html"));
 });
-webserver_2.get("/workwise", (_req: express.Request, res: express.Response) => {
-    res.sendFile(path.join(path.resolve(), "www/workwise.html"));
-});
-webserver_1.get("*", (_req: express.Request, res: express.Response) => {
+webserver_1.get('*', (_req: express.Request, res: express.Response) => {
     res.redirect('/');
 });
-webserver_2.get("*", (req: express.Request, res: express.Response) => {
+webserver_2.get('*', (req: express.Request, res: express.Response) => {
     Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
         path: decodeURIComponent(req.path)
     });
