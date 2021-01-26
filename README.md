@@ -222,3 +222,8 @@ The time taken for the read and write operation increases as the number of disti
 I am a twenty year old student from 🇩🇪 Germany. I like to work in software design and development and have an interest in the IT security domain.
 
 This repository, including the setup of a demonstration portal, was created within two days as part of a private research project on the topic of "Tracking on the Web".
+
+
+## [Donate](https://ko-fi.com/jonasstrehle)
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jonasstrehle)
