@@ -1,1 +1,151 @@
-xxxx
+<p align="center">
+  <a href="https://supercookie.me">
+    <img src="http://supercookie.me/favicon.ico" alt="supercookie" width="100px" />
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/jonasstrehle/supercookie/actions?workflow=Lint%20and%20test">
+    <img src="https://github.com/jonasstrehle/supercookie/workflows/Lint%20and%20test/badge.svg" alt="Build status">
+  </a>
+  <a href="https://github.com/jonasstrehle/supercookie">
+    <img src="https://img.shields.io/github/downloads/jonasstrehle/supercookie/total.svg" alt="Total downloads from GitHub">
+  </a>
+</p>
+
+Supercookies uses favicons to assign a unique identifier to website visitors.
+Unlike traditional tracking methods, this ID can be stored almost persistently.
+
+The tracking method works even in the browser's ingoknito mode and is not cleared even by flushing the cache, closing the browser or restarting the system, using a VPN or installing AdBlockers. 🍿 [Live demo](https://demo.supercookie.me).
+
+## About
+
+### Purpose
+
+This repository is for **educational** and **demonstration purposes** only!
+
+The demo of "supercookie" as well as the publication of the source code of this repository is intended to draw attention to the problem of tracking possibilities using favicons. Related work can be found [here](https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf).
+
+📕 [Full documentation](https://demo.supercookie.me/workwise)
+
+
+<br>
+
+## Installation
+
+### Docker
+**requirements**: 
+<img src="https://docs.docker.com/favicon.ico" width="12px"> [Docker daemon](https://docs.docker.com/get-docker/)
+
+1. Clone repository
+```bash
+git clone https://github.com/jonasstrehle/supercookie
+```
+
+2. Update domains in [supercookie/server/docker-compose.yml](https://github.com/jonasstrehle/supercookie/server/docker-compose.yml)
+```yml
+- "traefik.http.routers.supercookie-web-1.rule=Host(`yourdomain.com`)"
+- "traefik.http.routers.supercookie-web-1-secured.rule=Host(`yourdomain.com`)"
+
+- "traefik.http.routers.supercookie-web-2.rule=Host(`demo.yourdomain.com`)"
+- "traefik.http.routers.supercookie-web-2-secured.rule=Host(`demo.yourdomain.com`)"
+```
+
+3. Run container
+```bash
+cd supercookie/server
+docker-compose up
+```
+
+-> Webserver will be running at https://yourdomain.com
+
+
+
+### Local machine
+**requirements**: 
+<img src="https://nodejs.org/static/images/favicons/favicon.ico" width="12px"> [Node.js](https://nodejs.org/)
+
+1. Clone repository
+```bash
+git clone https://github.com/jonasstrehle/supercookie
+```
+
+2. Run service
+```bash
+cd supercookie/server
+node main.js
+```
+
+-> Webserver will be running at http://localhost:10080
+
+
+<br>
+
+
+## Workwise of [supercookie](https://supercookie.me/workwise)
+
+
+### [Background](https://supercookie.me/workwise#content-background)
+
+Modern browsers offer a wide range of features to improve and simplify the user experience.
+One of these features are the so-called favicons: A favicon is a small (usually 16×16 or 32×32 pixels) logo used by web browsers to brand a website in a recognizable way. Favicons are usually shown by most browsers in the address bar and next to the page's name in a list of bookmarks.
+
+To serve a favicon on their website, a developer has to include an <link rel> attribute in the webpage’s header. If this tag does exist, the browser requests the icon from the predefined source and if the server response contains an valid icon file that can be properly rendered this icon is displayed by the browser. In any other case, a blank favicon is shown.
+
+```html
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+```
+
+The favicons must be made very easily accessible by the browser. Therefore, they are cached in a separate local database on the system, called the favicon cache (F-Cache). A F-Cache data entries includes the visited URL (subdomain, domain, route, URL paramter), the favicon ID and the time to live (TTL).
+While this provides web developers the ability to delineate parts of their website using a wide variety of icons for individual routes and subdomains, it also leads to a possible tracking scenario.
+
+When a user visits a website, the browser checks if a favicon is needed by looking up the source of the shortcut icon link reference of the requested webpage.
+The browser initialy checks the local F-cache for an entry containing the URL of the active website. If a favicon entry exists, the icon will be loaded from the cache and then displayed. However, if there is no entry, for example because no favicon has ever been loaded under this particular domain, or the data in the cache is out of date, the browser makes a GET request to the server to load the site's favicon.
+
+
+### [Thread Model](https://supercookie.me/workwise#content-threat-model)
+
+In the article a possible threat model is explained that allows to assign a unique identifier to each browser in order to draw conclusions about the user and to be able to identify this user even in case of applied anti-fingerprint measures, such as the use of a VPN, deletion of cookies, deletion of the browser cache or manipulation of the client header information.
+
+A web server can draw conclusions about whether a browser has already loaded a favicon or not:
+So when the browser requests a web page, if the favicon is not in the local F-cache, another request for the favicon is made. If the icon already exists in the F-Cache, no further request is sent.
+By combining the state of delivered and not delivered favicons for specific URL paths for a browser, a unique pattern (identification number) can be assigned to the client.
+When the website is reloaded, the web server can reconstruct the identification number with the network requests sent by the client for the missing favicons and thus identify the browser.
+
+
+
+
+<p align="center">
+  <a href="https://supercookie.me">
+    <img src="https://supercookie.me/assets/header.png" alt="Pro screenshot" width="697px" />
+  </a>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <!-- The <img>s are to make the table take the full width -->
+      <th align="center"><img width="350" height="0"> <p>Open Source version</p></th>
+      <th align="center"><img width="350" height="0"> <p>Pro version</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Identification accuracy</td><td align="center">60%</td><td align="center">99.5%</td></tr>
+    <tr><td>Incognito / Private mode detection</td><td align="center">❌</td><td align="center">✅</td></tr>
+    <tr><td>Geolocation</td><td align="center">❌</td><td align="center">✅</td></tr>
+    <tr><td>Security</td><td align="center">❌</td><td align="center">✅</td></tr>
+    <tr><td>Server API</td><td align="center">❌</td><td align="center">✅</td></tr>
+    <tr><td>Webhooks</td><td align="center">❌</td><td align="center">✅</td></tr>
+    <tr><td>Stable identifier between versions</td><td align="center">❌</td><td align="center">✅</td></tr>
+  </tbody>
+</table>
+
+<br>
+
+## [Target](https://supercookie.me/workwise#content-target)
+
+It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12px"> [Chrome](https://google.com/chrome/), <img src="https://www.apple.com/favicon.ico" width="12px"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12px"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.
+Mobile browsers are also affected.
+
+
+## About me
