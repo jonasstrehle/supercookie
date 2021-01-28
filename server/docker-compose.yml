@@ -52,7 +52,7 @@ services:
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
       # web main
-      - "traefik.http.services.service-supercookie-web-1.loadbalancer.server.port=${HOST_MAIN}"
+      - "traefik.http.services.service-supercookie-web-1.loadbalancer.server.port=${PORT_MAIN}"
       - "traefik.http.routers.supercookie-web-1.rule=Host(`${HOST_MAIN}`)"
       - "traefik.http.routers.supercookie-web-1.entrypoints=web"
       - "traefik.http.routers.supercookie-web-1.middlewares=redirect-to-https@docker"
@@ -64,7 +64,7 @@ services:
       - "traefik.http.routers.supercookie-web-1-secured.service=service-supercookie-web-1"
 
       # web demo
-      - "traefik.http.services.service-supercookie-web-2.loadbalancer.server.port=${HOST_DEMO}"
+      - "traefik.http.services.service-supercookie-web-2.loadbalancer.server.port=${PORT_DEMO}"
       - "traefik.http.routers.supercookie-web-2.rule=Host(`${HOST_DEMO}`)"
       - "traefik.http.routers.supercookie-web-2.entrypoints=web"
       - "traefik.http.routers.supercookie-web-2.middlewares=redirect-to-https@docker"
