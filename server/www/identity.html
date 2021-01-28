@@ -157,7 +157,9 @@
         <div class="main">
             <div class="identifier-container">
                 <div>
-                    <img src="/assets/header.png" onclick="document.location.href='https://supercookie.me'">
+                    <a href="//{{url_main}}" target="_blank">
+                        <img src="/assets/header.png">
+                    </a>
                     <p class="speechbubble">
                         Your ID: <a class="identifier-hash" onclick="window.getSelection().selectAllChildren(this); document.execCommand('copy');">{{hash}}</a> <small>({{identifier}})</small>
                     </p>
@@ -168,7 +170,7 @@
                     <i class="material-icons">cached</i>
                     <div>Try Again</div>
                 </a>
-                <a class="button blue" href="https://supercookie.me/workwise" id="workwise">
+                <a class="button blue" target="_blank" href="//{{url_workwise}}" id="workwise">
                     <i class="material-icons">help</i>
                     <div>How does it work?</div>
                 </a>

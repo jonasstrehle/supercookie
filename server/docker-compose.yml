@@ -17,7 +17,7 @@ services:
       - --entrypoints.web-secure.address=:443
       - --certificatesresolvers.myhttpchallenge.acme.httpchallenge=true
       - --certificatesresolvers.myhttpchallenge.acme.httpchallenge.entrypoint=web
-      - --certificatesresolvers.myhttpchallenge.acme.caserver=https://acme-v02.api.letsencrypt.org/directory #staging
+      - --certificatesresolvers.myhttpchallenge.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.myhttpchallenge.acme.email=postmaster@unyt.cc
       - --certificatesresolvers.myhttpchallenge.acme.storage=/letsencrypt/acme.json
     ports:
@@ -44,33 +44,32 @@ services:
       - ./node_modules:/home/node/app/node_modules
       - ./tsconfig.json:/home/node/app/tsconfig.json
     expose:
-      - 10080
-      - 10081
+      - ${port-main}
+      - ${port-demo}
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
-      # web 1
-      - "traefik.http.services.service-supercookie-web-1.loadbalancer.server.port=10080"
-      - "traefik.http.routers.supercookie-web-1.rule=Host(`supercookie.me`)"
+      # web main
+      - "traefik.http.services.service-supercookie-web-1.loadbalancer.server.port=${port-main}"
+      - "traefik.http.routers.supercookie-web-1.rule=Host(`${host-main}`)"
       - "traefik.http.routers.supercookie-web-1.entrypoints=web"
       - "traefik.http.routers.supercookie-web-1.middlewares=redirect-to-https@docker"
       - "traefik.http.routers.supercookie-web-1.service=service-supercookie-web-1"
 
-      - "traefik.http.routers.supercookie-web-1-secured.rule=Host(`supercookie.me`)"
+      - "traefik.http.routers.supercookie-web-1-secured.rule=Host(`${host-main}`)"
       - "traefik.http.routers.supercookie-web-1-secured.tls=true"
       - "traefik.http.routers.supercookie-web-1-secured.tls.certresolver=myhttpchallenge"
       - "traefik.http.routers.supercookie-web-1-secured.service=service-supercookie-web-1"
 
-
-      # web 2
-      - "traefik.http.services.service-supercookie-web-2.loadbalancer.server.port=10081"
-      - "traefik.http.routers.supercookie-web-2.rule=Host(`demo.supercookie.me`)"
+      # web demo
+      - "traefik.http.services.service-supercookie-web-2.loadbalancer.server.port=${port-demo}"
+      - "traefik.http.routers.supercookie-web-2.rule=Host(`${host-demo}`)"
       - "traefik.http.routers.supercookie-web-2.entrypoints=web"
       - "traefik.http.routers.supercookie-web-2.middlewares=redirect-to-https@docker"
       - "traefik.http.routers.supercookie-web-2.service=service-supercookie-web-2"
 
-      - "traefik.http.routers.supercookie-web-2-secured.rule=Host(`demo.supercookie.me`)"
+      - "traefik.http.routers.supercookie-web-2-secured.rule=Host(`${host-demo}`)"
       - "traefik.http.routers.supercookie-web-2-secured.tls=true"
       - "traefik.http.routers.supercookie-web-2-secured.tls.certresolver=myhttpchallenge"
       - "traefik.http.routers.supercookie-web-2-secured.service=service-supercookie-web-2"

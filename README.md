@@ -206,7 +206,7 @@ Mobile browsers are also affected.
 ### [⚙ Scalability & Performance](https://supercookie.me/workwise#content-scalability-performance)
 
 By varying the number of bits that corresponds to the number of redirects to subpaths, this attack can be scaled almost arbitrarily.
-It can distinguish 2^N unique users , where N is the number of redirects on the client side.
+It can distinguish 2^N unique users, where N is the number of redirects on the client side.
 The time taken for the read and write operation increases as the number of distinguishable clients does.
 
 

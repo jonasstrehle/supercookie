@@ -29,7 +29,8 @@
         <script type="module">
             window.onload = async () => {
                 await new Promise((resolve) => setTimeout(resolve, 500));
-                const route = (document.cookie.match(new RegExp(`(^| )mid=([^;]+)`)) || [])[2] ? "/write" : "/read";
+                const mid = (document.cookie.match(new RegExp(`(^| )mid=([^;]+)`)) || [])[2];
+                const route = !!mid ? `/write/${mid}` : "/read";
                 document.cookie.split(";").forEach((c) => document.cookie = c.replace(/^ +/, "").replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`));
                 window.location.href = route;
             }

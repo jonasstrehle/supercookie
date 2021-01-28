@@ -27,30 +27,12 @@
     <body>
         <h1>{{index}}</h1>
         <script type="module">
-
             console.info(`{{index}} • bit v1`, JSON.parse("{{bit}}"));
-            // if (JSON.parse("{{bit}}"))
-            //     document.location.href = `${document.location.origin}/{{referrer}}`
-            // if (JSON.parse("{{bit}}") && "{{mode}}" === 'w')
-            //     document.location.href = `${document.location.origin}/{{referrer}}`;
-            // if (JSON.parse("{{bit}}"))
-            //     document.location.href = `${document.location.origin}/{{referrer}}`;
-
-
-            // const favicon = document.createElement('link');
-            // favicon.rel = "shortcut icon";
-            // favicon.type = "image/x-icon"
-            // favicon.onload = favicon.onerror = () => document.location.href = `${document.location.origin}/{{referrer}}`;
-            // favicon.href = `//${window.location.host}/f/{{favicon}}`
-            // document.head.appendChild(favicon);
-
             window.addEventListener("load", () => {
                 setTimeout(()=>{
                     document.location.href = `${document.location.origin}/{{referrer}}`;
-                }, JSON.parse("{{bit}}") ? 200 : 1000);
+                }, JSON.parse("{{bit}}") ? 500 : 200);
             });
-
-
             // window.addEventListener("load", () => 
             //     setTimeout(()=> document.location.href = `${document.location.origin}/{{referrer}}`, parseInt("{{delay}}")));
         </script>

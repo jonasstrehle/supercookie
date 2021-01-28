@@ -64,12 +64,12 @@
             .action-button i {
                 color: orange!important;
             }
-            .action-button:hover {
+            .action-button:hover, .action-button:active {
                 opacity: 0.8;
                 color: orange!important;
                 box-shadow: 20px 20px 80px #0e0e0e, -20px -20px 80px #323232;
             }
-            .action-button:hover > i {
+            .action-button:hover > i, .action-button:active > i {
                 opacity: 0.8;
                 transform: scale(1.2);
                 color: white!important;
@@ -107,10 +107,10 @@
                 justify-content: center;
                 align-items: center;
             }
-            .tag:hover {
+            .tag:hover, .tag:active {
                 transform: scale(0.92);
             }
-            .tag:hover a {
+            .tag:hover a .tag:active a {
                 color: rgba(255, 255, 255, 0.6)!important;
             }
             .tag > img {
@@ -178,7 +178,7 @@
         <div class="main">
             <h1>Browser-Fingerprinting<br>via <b>Favicon</b></h1>
             
-            <a class="action-button" href="https://demo.supercookie.me"><i class="material-icons-outlined">visibility</i>To the Demo!</a>
+            <a class="action-button" href="//{{url_demo}}"><i class="material-icons-outlined">visibility</i>To the Demo!</a>
         </div>
 
         <div class="footer">

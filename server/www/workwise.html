@@ -907,7 +907,7 @@
     <body>
         <div class="main">
             <div class="tag">
-                <a href="https://supercookie.me">
+                <a href="//{{url_main}}">
                     <span class="material-icons-outlined">home</span>
                 </a>
             </div>
@@ -942,10 +942,10 @@
                 Due to the constant development of the Internet, such as the continuous elaboration of new standards and features, the introduction of powerful APIs and further interfaces on the browser side, the possibilities for collecting and analyzing data have also significantly expanded over the last few decades!
                 <br>
                 <br>
-                First and foremost, there is nothing at all wrong with collecting data. We all collect data, whether unconsciously in private everyday life or completely consciously in school or at work - collecting data, interpreting it and drawing conclusions is actually incredibly important!
+                First and foremost, there is nothing wrong with collecting data at all. All of us collect data, whether unconsciously in private everyday life or completely consciously in school or at work - collecting data, interpreting it and drawing conclusions is actually incredibly important!
                 <br>
                 <br>
-                With the advent of the WWW and the first online services, data collection also started to become interesting for the service providers, according to the motto <i>if I own a website on the Internet, I also want to know who is surfing it</i>.
+                With the launch of the WWW and the first online services, data collection also started to become interesting for the various service providers, according to the motto <i>if I own a website on the Internet, I also want to know who is surfing it</i>.
                 <br>
                 However, in most cases we as consumers only want to disclose as little as possible and only the data necessary for the intended service - in fact, <i>my private data is no one else's business</i>.
                 <br>
@@ -1044,7 +1044,9 @@
                         In the above example, the webserver only responds to requests for the favicons under paths <i>/a/favicon.ico</i> and <i>/c/favicon.ico</i>. The F-Cache only has favicons-entries for these two paths.<br>
 
 
-                        <img class="diagram-image" src="/assets/diagram-write-dark.svg">
+                        <a href="/assets/diagram-write.png" target="_blank">
+                            <img class="diagram-image" src="/assets/diagram-write.svg">
+                        </a>
 
                         <br>
                         
@@ -1068,7 +1070,9 @@
                             <br>
                         </p>
 
-                        <img class="diagram-image" src="/assets/diagram-read-dark.svg">
+                        <a href="/assets/diagram-read.png" target="_blank">
+                            <img class="diagram-image" src="/assets/diagram-read.svg">
+                        </a>
                         <br>
                     </li>
                 </ol>
@@ -1181,7 +1185,7 @@
                 </h3>
 
                 By varying the number of bits that corresponds to the number of redirects to subpaths, this attack can be scaled almost arbitrarily.<br>
-                It can distinguish 2^N unique users , where N is the number of redirects on the client side.<br>
+                It can distinguish 2^N unique users, where N is the number of redirects on the client side.<br>
                 The time taken for the read and write operation increases as the number of distinguishable clients does.<br><br>
                 <i>The following measured times prove to be the minimum time required for this attack to work. The actual time required in practice depends on many more factors, such as Internet speed, location, hardware setup and browser type.</i>
                 <br><br>
