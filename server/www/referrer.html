@@ -43,8 +43,16 @@
             // favicon.onload = favicon.onerror = () => document.location.href = `${document.location.origin}/{{referrer}}`;
             // favicon.href = `//${window.location.host}/f/{{favicon}}`
             // document.head.appendChild(favicon);
-            window.addEventListener("load", () => 
-                setTimeout(()=> document.location.href = `${document.location.origin}/{{referrer}}`, 830));
+
+            window.addEventListener("load", () => {
+                setTimeout(()=>{
+                    document.location.href = `${document.location.origin}/{{referrer}}`;
+                }, JSON.parse("{{bit}}") ? 200 : 1000);
+            });
+
+
+            // window.addEventListener("load", () => 
+            //     setTimeout(()=> document.location.href = `${document.location.origin}/{{referrer}}`, parseInt("{{delay}}")));
         </script>
     </body>
 </html>

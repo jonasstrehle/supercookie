@@ -1110,20 +1110,64 @@
                             <td align="center">-</td>
                         </tr>
                         <tr>
-                            <td>Edge <em>(v 87)</em></td>
+                            <td>Edge <em>(v 87.0)</em></td>
                             <td align="center">✅</td>
                             <td align="center">✅</td>
                             <td align="center">❌</td>
-                            <td align="center">-</td>
+                            <td align="center">❌</td>
                             <td align="center">✅</td>
                         </tr>
                         <tr>
                             <td>Firefox <em>(v 84.0)</em></td>
-                            <td align="center">-</td>
                             <td align="center">✅</td>
-                            <td align="center">-</td>
-                            <td align="center">-</td>
-                            <td align="center">-</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br><br>
+
+                The demonstration also impressively shows that applying anti-tracking software, adblockers, VPN or surfing in incognito mode does not offer any significant improvement and the browser remains vulnerable to the tracking even with these measures:<br><br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Browser</th>
+                            <th align="center">Incognito / Private mode</th>
+                            <th align="center">Clear Website Data</th>
+                            <th align="center">VPN</th>
+                            <th align="center">Adblock / Anti-Tracking</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chrome</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                        </tr>
+                        <tr>
+                            <td>Safari</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                        </tr>
+                        <tr>
+                            <td>Edge</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                        </tr>
+                        <tr>
+                            <td>Firefox</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
+                            <td align="center">✅</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1138,7 +1182,8 @@
 
                 By varying the number of bits that corresponds to the number of redirects to subpaths, this attack can be scaled almost arbitrarily.<br>
                 It can distinguish 2^N unique users , where N is the number of redirects on the client side.<br>
-                The time taken for the read and write operation increases as the number of distinguishable clients does:
+                The time taken for the read and write operation increases as the number of distinguishable clients does.<br><br>
+                <i>The following measured times prove to be the minimum time required for this attack to work. The actual time required in practice depends on many more factors, such as Internet speed, location, hardware setup and browser type.</i>
                 <br><br>
                 <table>
                     <thead>

@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs";
 import cookieParser from "cookie-parser";
 import crypto from "crypto";
+import cors from "cors";
 
 /**
  * UTILS
@@ -88,6 +89,9 @@ const N: number = 10;
 const webserver_1: express.Express = express();
 const webserver_2: express.Express = express();
 const maxN: number = 2**N - 1;
+
+webserver_1.options('*', cors());
+webserver_2.options('*', cors());
 
 
 console.info(`supercookie | Starting up using N=${N}, C-ID='${CACHE_IDENTIFIER}' ...`);
@@ -218,7 +222,7 @@ class Profile {
 webserver_2.set("trust proxy", 1);
 webserver_2.use(cookieParser());
 webserver_2.use((req: express.Request, res: express.Response, next: Function) => {  
-    res.header("Access-Control-Allow-Origin", req.headers.origin);
+    res.header("Access-Control-Allow-Origin", "localhost:10081")//""req.headers.origin);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
@@ -257,8 +261,9 @@ webserver_2.get("/t/:ref", (req: express.Request, res: express.Response) => {
     if (profile._isReading() && profile.visited.has(referrer))
         return res.redirect('/');
 
-    Webserver.sendFile(res, path.join(path.resolve(), "www/referrer-v2.html"), {
+    Webserver.sendFile(res, path.join(path.resolve(), "www/referrer.html"), {
         referrer: nextReferrer ? `t/${nextReferrer}?x=${Math.random()*10000}` : profile._isReading() ? "identity" : "",
+        delay: Webserver.getIndexByRoute(referrer) === 0 ? 3000 : 200,
         favicon: referrer,
         mode: profile._isReading() ? 'r' : 'w',
         bit: !profile._isReading() ? profile.vector.includes(referrer) : false,
@@ -305,11 +310,11 @@ webserver_2.get('/', (_req: express.Request, res: express.Response) => {
     res.clearCookie("mid");
     res.redirect(`/${CACHE_IDENTIFIER}`);
 });
-
+const FILE = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";//"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";
 webserver_2.get("/l/:ref", (_req: express.Request, res: express.Response) => {
     console.info(`supercookie | Unknown visitor detected.`);
     Webserver.setCookie(res, "mid", true, { expires: null });
-    const data = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=", "base64");
+    const data = Buffer.from(FILE, "base64");
     res.writeHead(200, {
         "Cache-Control": "public, max-age=31536000",
         "Expires": new Date(Date.now() + 31536000000).toUTCString(),
@@ -328,15 +333,18 @@ webserver_2.get("/f/:ref", (req: express.Request, res: express.Response) => {
     if (profile._isReading()) {
         profile._visitRoute(referrer);
         console.info(`supercookie | Favicon requested by uid='${uid}' • Read `, Webserver.getIndexByRoute(referrer), "•", 
-            Array.from(profile.visited).map(route => Webserver.getIndexByRoute(route)))
+            Array.from(profile.visited).map(route => Webserver.getIndexByRoute(route)));
+
+        return;
         return res.type("gif"), res.status(404), res.end();
     }
     if (profile.vector.includes(referrer)) {
         console.info(`supercookie | Favicon requested by uid='${uid}' • Write`, Webserver.getIndexByRoute(referrer), "•", 
-            Array.from(profile.vector).map(route => Webserver.getIndexByRoute(route)))
+            Array.from(profile.vector).map(route => Webserver.getIndexByRoute(route)));
+        // res.type("gif"), res.status(404), res.end();
         return;
     }
-    const data = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=", "base64");
+    const data = Buffer.from(FILE, "base64");
     res.writeHead(200, {
         "Cache-Control": "public, max-age=31536000",
         "Expires": new Date(Date.now() + 31536000000).toUTCString(),
@@ -368,6 +376,7 @@ webserver_2.get('*', (req: express.Request, res: express.Response) => {
         path: decodeURIComponent(req.path)
     });
 });
+
 webserver_1.listen(WEBSERVER_PORT_1, () => 
     console.info(`express-web | Webserver-1 running on port:`, WEBSERVER_PORT_1));
 webserver_2.listen(WEBSERVER_PORT_2, () => 

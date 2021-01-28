@@ -140,6 +140,11 @@ When the website is reloaded, the web server can reconstruct the identification 
       <td align="center">❌</td>
       <td align="center">✅</td>
     </tr>
+    <tr>
+      <td>Working with Anti-Tracking SW</td>
+      <td align="center">❌</td>
+      <td align="center">✅</td>
+    </tr>
   </tbody>
 </table>
 
@@ -179,14 +184,6 @@ Mobile browsers are also affected.
       <td align="center">-</td>
     </tr>
     <tr>
-      <td><b>Safari</b> (v 14.0)</td>
-      <td align="center">-</td>
-      <td align="center">✅</td>
-      <td align="center">-</td>
-      <td align="center">❌</td>
-      <td align="center">-</td>
-    </tr>
-    <tr>
       <td><b>Edge</b> (v 87.0)</td>
       <td align="center">✅</td>
       <td align="center">✅</td>
@@ -196,11 +193,11 @@ Mobile browsers are also affected.
     </tr>
     <tr>
       <td><b>Firefox</b> (v 84.0)</td>
-      <td align="center">-</td>
       <td align="center">✅</td>
-      <td align="center">-</td>
-      <td align="center">-</td>
-      <td align="center">-</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+      <td align="center">❌</td>
+      <td align="center">✅</td>
     </tr>
   </tbody>
 </table>
