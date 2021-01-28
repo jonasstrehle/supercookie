@@ -97,10 +97,10 @@ dotenv.config();
  * @global
  * User options (edit in .env file)
  */
-const WEBSERVER_DOMAIN_1: string    = process.env["host-main"] ?? "localhost:10080";
-const WEBSERVER_DOMAIN_2: string    = process.env["host-demo"] ?? "localhost:10081";
-const WEBSERVER_PORT_1: number      = +process.env["port-main"] ?? 10080;
-const WEBSERVER_PORT_2: number      = +process.env["port-demo"] ?? 10081;
+const WEBSERVER_DOMAIN_1: string    = process.env["HOST_MAIN"] ?? "localhost:10080";
+const WEBSERVER_DOMAIN_2: string    = process.env["HOST_DEMO"] ?? "localhost:10081";
+const WEBSERVER_PORT_1: number      = +process.env["PORT_MAIN"] ?? 10080;
+const WEBSERVER_PORT_2: number      = +process.env["PORT_DEMO"] ?? 10081;
 const CACHE_IDENTIFIER: string      = STORAGE.cacheID ?? generateUUID("xxxxxxxx", "0123456789abcdef");
 
 const N: number                     = 32; // max 2^N unique ids possible

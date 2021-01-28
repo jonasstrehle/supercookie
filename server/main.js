@@ -64,10 +64,10 @@ class Storage {
 }
 const STORAGE = new Storage().content;
 dotenv.config();
-const WEBSERVER_DOMAIN_1 = process.env["host-main"] ?? "localhost:10080";
-const WEBSERVER_DOMAIN_2 = process.env["host-demo"] ?? "localhost:10081";
-const WEBSERVER_PORT_1 = +process.env["port-main"] ?? 10080;
-const WEBSERVER_PORT_2 = +process.env["port-demo"] ?? 10081;
+const WEBSERVER_DOMAIN_1 = process.env["HOST_MAIN"] ?? "localhost:10080";
+const WEBSERVER_DOMAIN_2 = process.env["HOST_DEMO"] ?? "localhost:10081";
+const WEBSERVER_PORT_1 = +process.env["PORT_MAIN"] ?? 10080;
+const WEBSERVER_PORT_2 = +process.env["PORT_DEMO"] ?? 10081;
 const CACHE_IDENTIFIER = STORAGE.cacheID ?? generateUUID("xxxxxxxx", "0123456789abcdef");
 const N = 32;
 const FILE = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";

@@ -44,32 +44,32 @@ services:
       - ./node_modules:/home/node/app/node_modules
       - ./tsconfig.json:/home/node/app/tsconfig.json
     expose:
-      - ${port-main}
-      - ${port-demo}
+      - ${PORT_MAIN}
+      - ${PORT_DEMO}
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
       # web main
-      - "traefik.http.services.service-supercookie-web-1.loadbalancer.server.port=${port-main}"
-      - "traefik.http.routers.supercookie-web-1.rule=Host(`${host-main}`)"
+      - "traefik.http.services.service-supercookie-web-1.loadbalancer.server.port=${HOST_MAIN}"
+      - "traefik.http.routers.supercookie-web-1.rule=Host(`${HOST_MAIN}`)"
       - "traefik.http.routers.supercookie-web-1.entrypoints=web"
       - "traefik.http.routers.supercookie-web-1.middlewares=redirect-to-https@docker"
       - "traefik.http.routers.supercookie-web-1.service=service-supercookie-web-1"
 
-      - "traefik.http.routers.supercookie-web-1-secured.rule=Host(`${host-main}`)"
+      - "traefik.http.routers.supercookie-web-1-secured.rule=Host(`${HOST_MAIN}`)"
       - "traefik.http.routers.supercookie-web-1-secured.tls=true"
       - "traefik.http.routers.supercookie-web-1-secured.tls.certresolver=myhttpchallenge"
       - "traefik.http.routers.supercookie-web-1-secured.service=service-supercookie-web-1"
 
       # web demo
-      - "traefik.http.services.service-supercookie-web-2.loadbalancer.server.port=${port-demo}"
-      - "traefik.http.routers.supercookie-web-2.rule=Host(`${host-demo}`)"
+      - "traefik.http.services.service-supercookie-web-2.loadbalancer.server.port=${HOST_DEMO}"
+      - "traefik.http.routers.supercookie-web-2.rule=Host(`${HOST_DEMO}`)"
       - "traefik.http.routers.supercookie-web-2.entrypoints=web"
       - "traefik.http.routers.supercookie-web-2.middlewares=redirect-to-https@docker"
       - "traefik.http.routers.supercookie-web-2.service=service-supercookie-web-2"
 
-      - "traefik.http.routers.supercookie-web-2-secured.rule=Host(`${host-demo}`)"
+      - "traefik.http.routers.supercookie-web-2-secured.rule=Host(`${HOST_DEMO}`)"
       - "traefik.http.routers.supercookie-web-2-secured.tls=true"
       - "traefik.http.routers.supercookie-web-2-secured.tls.certresolver=myhttpchallenge"
       - "traefik.http.routers.supercookie-web-2-secured.service=service-supercookie-web-2"
