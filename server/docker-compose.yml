@@ -43,6 +43,7 @@ services:
       - ./:/home/node/app
       - ./node_modules:/home/node/app/node_modules
       - ./tsconfig.json:/home/node/app/tsconfig.json
+      - ./.env:/home/node/app/.env
     expose:
       - ${PORT_MAIN}
       - ${PORT_DEMO}
