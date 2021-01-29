@@ -19,7 +19,6 @@ The tracking method works even in the browser's incognito mode and is not cleare
 ### 💭 Source
 
 - Related work from Scientists at University of Illinois at Chicago: [www.cs.uic.edu](https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf)
-<br>
 - Article by heise: [heise.de](https://heise.de/-5027814) 
 
 ### 🪧 Purpose
