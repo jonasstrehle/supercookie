@@ -242,12 +242,12 @@ class Profile {
     }
 
     public storageSize = -1;
-}
+};
 
 webserver_2.set("trust proxy", 1);
 webserver_2.use(cookieParser());
-webserver_2.use((req: express.Request, res: express.Response, next: Function) => {  
-    res.header("Access-Control-Allow-Origin", "localhost:10081"); // req.headers.origin
+webserver_2.use((_req: express.Request, res: express.Response, next: Function) => {  
+    res.header("Access-Control-Allow-Origin", WEBSERVER_DOMAIN_2); // req.headers.origin
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });

@@ -187,10 +187,11 @@ let Profile = (() => {
     Profile.list = new Set();
     return Profile;
 })();
+;
 webserver_2.set("trust proxy", 1);
 webserver_2.use(cookieParser());
-webserver_2.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "localhost:10081");
+webserver_2.use((_req, res, next) => {
+    res.header("Access-Control-Allow-Origin", WEBSERVER_DOMAIN_2);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
