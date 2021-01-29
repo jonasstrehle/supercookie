@@ -16,11 +16,16 @@ The tracking method works even in the browser's incognito mode and is not cleare
 
 ## About
 
+### 💭 Source
+
+Related work from Scientists at University of Illinois at Chicago: [www.cs.uic.edu](https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf)
+
+
 ### 🪧 Purpose
 
 This repository is for **educational** and **demonstration purposes** only!
 
-The demo of "supercookie" as well as the publication of the source code of this repository is intended to draw attention to the problem of tracking possibilities using favicons. Related work can be found [here](https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf).
+The demo of "supercookie" as well as the publication of the source code of this repository is intended to draw attention to the problem of tracking possibilities using favicons.
 
 📕 [Full documentation](https://demo.supercookie.me/workwise)
 
