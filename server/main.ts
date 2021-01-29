@@ -364,7 +364,7 @@ webserver_2.get("/identity", (req: express.Request, res: express.Response) => {
     res.clearCookie("uid");
     res.clearCookie("vid");
     const identifier = profile._calcIdentifier();
-    if (identifier === maxN || identifier === 0)
+    if (identifier === maxN || profile.visited.size === 0)
         return res.redirect(`/write/${generateWriteToken()}`);
     if (identifier !== 0) {
         const identifierHash: string = hashNumber(identifier);
