@@ -12,7 +12,7 @@
 Supercookies uses favicons to assign a unique identifier to website visitors.
 Unlike traditional tracking methods, this ID can be stored almost persistently.
 
-The tracking method works even in the browser's ingoknito mode and is not cleared even by flushing the cache, closing the browser or restarting the system, using a VPN or installing AdBlockers. 🍿 [Live demo](https://supercookie.me).
+The tracking method works even in the browser's incognito mode and is not cleared even by flushing the cache, closing the browser or restarting the system, using a VPN or installing AdBlockers. 🍿 [Live demo](https://supercookie.me).
 
 ## About
 
