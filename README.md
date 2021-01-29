@@ -40,7 +40,7 @@ The demo of "supercookie" as well as the publication of the source code of this 
 git clone https://github.com/jonasstrehle/supercookie
 ```
 
-2. Update .env file in [supercookie/server/.env](https://github.com/jonasstrehle/supercookie/server/.env)
+2. Update .env file in [supercookie/server/.env](https://github.com/jonasstrehle/supercookie/blob/main/server/.env)
 ```env
 HOST_MAIN=yourdomain.com #or localhost:10080
 PORT_MAIN=10080
@@ -68,7 +68,7 @@ docker-compose up
 git clone https://github.com/jonasstrehle/supercookie
 ```
 
-2. Update .env file in [supercookie/server/.env](https://github.com/jonasstrehle/supercookie/server/.env)
+2. Update .env file in [supercookie/server/.env](https://github.com/jonasstrehle/supercookie/blob/main/server/.env)
 ```env
 HOST_MAIN=localhost:10080
 PORT_MAIN=10080
