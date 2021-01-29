@@ -274,7 +274,7 @@ webserver_2.get("/identity", (req, res) => {
     res.clearCookie("uid");
     res.clearCookie("vid");
     const identifier = profile._calcIdentifier();
-    if (identifier === maxN || profile.visited.size === 0)
+    if (identifier === maxN || profile.visited.size === 0 || identifier === 0)
         return res.redirect(`/write/${generateWriteToken()}`);
     if (identifier !== 0) {
         const identifierHash = hashNumber(identifier);
