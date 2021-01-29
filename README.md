@@ -35,13 +35,13 @@ The demo of "supercookie" as well as the publication of the source code of this 
 git clone https://github.com/jonasstrehle/supercookie
 ```
 
-2. Update domains in [supercookie/server/docker-compose.yml](https://github.com/jonasstrehle/supercookie/server/docker-compose.yml)
-```yml
-- "traefik.http.routers.supercookie-web-1.rule=Host(`yourdomain.com`)"
-- "traefik.http.routers.supercookie-web-1-secured.rule=Host(`yourdomain.com`)"
+2. Update .env file in [supercookie/server/.env](https://github.com/jonasstrehle/supercookie/server/.env)
+```env
+HOST_MAIN=yourdomain.com #or localhost:10080
+PORT_MAIN=10080
 
-- "traefik.http.routers.supercookie-web-2.rule=Host(`demo.yourdomain.com`)"
-- "traefik.http.routers.supercookie-web-2-secured.rule=Host(`demo.yourdomain.com`)"
+HOST_DEMO=demo.yourdomain.com #or localhost:10081
+PORT_DEMO=10081
 ```
 
 3. Run container
@@ -63,7 +63,16 @@ docker-compose up
 git clone https://github.com/jonasstrehle/supercookie
 ```
 
-2. Run service
+2. Update .env file in [supercookie/server/.env](https://github.com/jonasstrehle/supercookie/server/.env)
+```env
+HOST_MAIN=localhost:10080
+PORT_MAIN=10080
+
+HOST_DEMO=localhost:10081
+PORT_DEMO=10081
+```
+
+3. Run service
 ```bash
 cd supercookie/server
 node main.js
