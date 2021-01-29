@@ -138,7 +138,7 @@ let Profile = (() => {
         constructor(uid, identifier = null) {
             this._identifier = null;
             this._visitedRoutes = new Set();
-            this.storageSize = -1;
+            this._storageSize = -1;
             this._uid = uid;
             if (identifier !== null)
                 this._identifier = identifier,
@@ -181,7 +181,13 @@ let Profile = (() => {
             this._visitedRoutes.add(route);
         }
         _calcIdentifier() {
-            return this._identifier = Webserver.getIdentifier(this._visitedRoutes, this.storageSize), this.identifier;
+            return this._identifier = Webserver.getIdentifier(this._visitedRoutes, this._storageSize), this.identifier;
+        }
+        _setStorageSize(size) {
+            this._storageSize = size;
+        }
+        get storageSize() {
+            return this._storageSize;
         }
     }
     Profile.list = new Set();
@@ -190,10 +196,12 @@ let Profile = (() => {
 ;
 webserver_2.set("trust proxy", 1);
 webserver_2.use(cookieParser());
-webserver_2.use((_req, res, next) => {
-    res.header("Access-Control-Allow-Origin", WEBSERVER_DOMAIN_2);
+webserver_2.use((req, res, next) => {
+    if (new RegExp(`https?:\/\/${WEBSERVER_DOMAIN_2}`).test(req.headers.origin))
+        res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+    res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+    return next();
 });
 const midSet = new Set();
 const generateWriteToken = () => {
@@ -207,7 +215,7 @@ webserver_2.get("/read", (_req, res) => {
     const uid = generateUUID();
     console.info(`supercookie | Visitor uid='${uid}' is known • Read`);
     const profile = Profile.from(uid);
-    profile.storageSize = Math.floor(Math.log2(STORAGE.index ?? 1)) + 1;
+    profile._setStorageSize(Math.floor(Math.log2(STORAGE.index ?? 1)) + 1);
     if (profile === null)
         return res.redirect("/read");
     Webserver.setCookie(res, "uid", uid);
@@ -288,7 +296,9 @@ webserver_2.get(`/${CACHE_IDENTIFIER}`, (req, res) => {
     const rid = !!req.cookies.rid;
     res.clearCookie("rid");
     if (!rid)
-        Webserver.sendFile(res, path.join(path.resolve(), "www/redirect.html"));
+        Webserver.sendFile(res, path.join(path.resolve(), "www/redirect.html"), {
+            url_demo: WEBSERVER_DOMAIN_2
+        });
     else
         Webserver.sendFile(res, path.join(path.resolve(), "www/launch.html"), {
             favicon: CACHE_IDENTIFIER
