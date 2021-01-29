@@ -16,7 +16,7 @@ The tracking method works even in the browser's incognito mode and is not cleare
 
 ## About
 
-### 💭 Source
+### 💭 Inspiration
 
 - Paper by Scientists at University of Illinois, Chicago: [www.cs.uic.edu](https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf)
 - Article by heise: [heise.de](https://heise.de/-5027814) 
@@ -27,7 +27,7 @@ This repository is for **educational** and **demonstration purposes** only!
 
 The demo of "supercookie" as well as the publication of the source code of this repository is intended to draw attention to the problem of tracking possibilities using favicons.
 
-📕 [Full documentation](https://demo.supercookie.me/workwise)
+📕 [Full documentation](https://supercookie.me/workwise)
 
 ## Installation
 
