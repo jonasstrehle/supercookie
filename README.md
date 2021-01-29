@@ -189,7 +189,7 @@ Mobile browsers are also affected.
       <td align="center">-</td>
       <td align="center">✅</td>
       <td align="center">-</td>
-      <td align="center">❌</td>
+      <td align="center">✅</td>
       <td align="center">-</td>
     </tr>
     <tr>
