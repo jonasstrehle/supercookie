@@ -235,10 +235,11 @@ This repository, including the setup of a demonstration portal, was created with
 
 ### [💖 Support the project](https://ko-fi.com/jonasstrehle)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jonasstrehle)
 
 ## Spread the world!
 
 Liked the project? Just give it a star ⭐ and spread the world!
 
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jonasstrehle)
+
