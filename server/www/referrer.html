@@ -26,15 +26,14 @@
     
     <body>
         <h1>{{index}}</h1>
-        <script type="module">
+        <script>
             console.info(`{{index}} • bit v1`, JSON.parse("{{bit}}"));
+
             window.addEventListener("load", () => {
                 setTimeout(()=>{
                     document.location.href = `${document.location.origin}/{{referrer}}`;
-                }, JSON.parse("{{bit}}") ? 500 : 200);
+                }, +"{{delay}}");
             });
-            // window.addEventListener("load", () => 
-            //     setTimeout(()=> document.location.href = `${document.location.origin}/{{referrer}}`, parseInt("{{delay}}")));
         </script>
     </body>
 </html>

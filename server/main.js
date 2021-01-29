@@ -219,7 +219,7 @@ webserver_2.get("/read", (_req, res) => {
     if (profile === null)
         return res.redirect("/read");
     Webserver.setCookie(res, "uid", uid);
-    res.redirect(`/t/${Webserver.getRouteByIndex(0)}`);
+    res.redirect(`/t/${Webserver.getRouteByIndex(0)}?f=${generateUUID()}`);
 });
 webserver_2.get("/write/:mid", (req, res) => {
     const mid = req.params.mid;
@@ -250,17 +250,19 @@ webserver_2.get("/t/:ref", (req, res) => {
         profile.storageSize :
         Math.floor(Math.log2(profile.identifier)) + 1;
     if (route)
-        nextReferrer = `t/${route}?x=${Math.random() * 10000}`;
+        nextReferrer = `t/${route}?f=${generateUUID()}`;
     if (!profile._isReading()) {
         if (Webserver.getIndexByRoute(referrer) >= redirectCount - 1)
             nextReferrer = "read";
     }
     else if (Webserver.getIndexByRoute(referrer) >= redirectCount - 1 || nextReferrer === null)
         nextReferrer = "identity";
+    const bit = !profile._isReading() ? profile.vector.includes(referrer) : "{}";
     Webserver.sendFile(res, path.join(path.resolve(), "www/referrer.html"), {
+        delay: profile._isReading() ? 500 : 800,
         referrer: nextReferrer,
         favicon: referrer,
-        bit: !profile._isReading() ? profile.vector.includes(referrer) : false,
+        bit: bit,
         index: `${Webserver.getIndexByRoute(referrer) + 1} / ${redirectCount}`
     });
 });
@@ -312,6 +314,16 @@ webserver_2.get('/', (_req, res) => {
 webserver_2.get("/l/:ref", (_req, res) => {
     console.info(`supercookie | Unknown visitor detected.`);
     Webserver.setCookie(res, "mid", generateWriteToken());
+    const data = Buffer.from(FILE, "base64");
+    res.writeHead(200, {
+        "Cache-Control": "public, max-age=31536000",
+        "Expires": new Date(Date.now() + 31536000000).toUTCString(),
+        "Content-Type": "image/png",
+        "Content-Length": data.length
+    });
+    res.end(data);
+});
+webserver_2.get("/i/:ref", (req, res) => {
     const data = Buffer.from(FILE, "base64");
     res.writeHead(200, {
         "Cache-Control": "public, max-age=31536000",
