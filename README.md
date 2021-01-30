@@ -12,7 +12,7 @@
   <a href="https://github.com/jonasstrehle/supercookie">
     <img src="https://img.shields.io/github/languages/count/jonasstrehle/supercookie" alt="Languages used">
   </a>
-  <a href="https://github.com/jonasstrehle/supercookie">
+  <a href="https://supercookie.me">
     <img src="https://img.shields.io/website?down_message=down&up_color=green&up_message=online&url=https%3A%2F%2Fsupercookie.me" alt="Website Status">
   </a>
   <a href="https://github.com/jonasstrehle/supercookie">
