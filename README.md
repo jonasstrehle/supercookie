@@ -5,9 +5,21 @@
 </p>
 <p align="center">
   <a href="https://github.com/jonasstrehle/supercookie">
-    <img src="https://img.shields.io/github/downloads/jonasstrehle/supercookie/total.svg" alt="Total downloads from GitHub">
+    <img src="https://img.shields.io/github/downloads/jonasstrehle/supercookie/total.svg" alt="Total downloads">
   </a>
 </p>
+<p align="center">
+  <a href="https://github.com/jonasstrehle/supercookie">
+    <img src="https://img.shields.io/github/languages/count/jonasstrehle/supercookie" alt="Languages used">
+  </a>
+  <a href="https://github.com/jonasstrehle/supercookie">
+    <img src="https://img.shields.io/website?down_message=down&up_color=green&up_message=online&url=https%3A%2F%2Fsupercookie.me" alt="Website Status">
+  </a>
+  <a href="https://github.com/jonasstrehle/supercookie">
+    <img src="https://img.shields.io/github/license/jonasstrehle/supercookie" alt="License">
+  </a>
+</p>
+
 
 **Supercookie** uses favicons to assign a unique identifier to website visitors.<br>
 Unlike traditional tracking methods, this ID can be stored almost persistently and cannot be easily cleared by the user.
