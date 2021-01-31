@@ -5,12 +5,24 @@
 </p>
 <p align="center">
   <a href="https://github.com/jonasstrehle/supercookie">
-    <img src="https://img.shields.io/github/downloads/jonasstrehle/supercookie/total.svg" alt="Total downloads from GitHub">
+    <img src="https://img.shields.io/github/downloads/jonasstrehle/supercookie/total.svg" alt="Total downloads">
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/jonasstrehle/supercookie">
+    <img src="https://img.shields.io/github/languages/count/jonasstrehle/supercookie" alt="Languages used">
+  </a>
+  <a href="https://supercookie.me">
+    <img src="https://img.shields.io/website?down_message=down&up_color=green&up_message=online&url=https%3A%2F%2Fsupercookie.me" alt="Website Status">
+  </a>
+  <a href="https://github.com/jonasstrehle/supercookie">
+    <img src="https://img.shields.io/github/license/jonasstrehle/supercookie" alt="License">
   </a>
 </p>
 
-Supercookies uses favicons to assign a unique identifier to website visitors.
-Unlike traditional tracking methods, this ID can be stored almost persistently.
+
+**Supercookie** uses favicons to assign a unique identifier to website visitors.<br>
+Unlike traditional tracking methods, this ID can be stored almost persistently and cannot be easily cleared by the user.
 
 The tracking method works even in the browser's incognito mode and is not cleared by flushing the cache, closing the browser or restarting the system, using a VPN or installing AdBlockers. 🍿 [Live demo](https://supercookie.me).
 
@@ -235,5 +247,11 @@ This repository, including the setup of a demonstration portal, was created with
 
 ### [💖 Support the project](https://ko-fi.com/jonasstrehle)
 
-
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jonasstrehle)
+
+## Spread the world!
+
+Liked the project? Just give it a star ⭐ and spread the world!
+
+
+
