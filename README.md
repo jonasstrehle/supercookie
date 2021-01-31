@@ -236,7 +236,7 @@ It can distinguish 2^N unique users, where N is the number of redirects on the c
 The time taken for the read and write operation increases as the number of distinguishable clients does.
 <br>
 In order to keep the number of redirects as minimal as possible, N can have a dynamic length. 
-More about this [here](https://supercookie.me/workwise#content-scalability-performance)
+More about this [here](https://supercookie.me/workwise#content-scalability-performance).
 
 ## Other
 
