@@ -1186,7 +1186,25 @@
 
                 By varying the number of bits that corresponds to the number of redirects to subpaths, this attack can be scaled almost arbitrarily.<br>
                 It can distinguish 2^N unique users, where N is the number of redirects on the client side.<br>
-                The time taken for the read and write operation increases as the number of distinguishable clients does.<br><br>
+                
+                <br>
+
+                Since each subpath redirection increases the duration of the identification, the performance of the attack the webserver can dynamically increase the number of redirects. This is done trivially by appending a new subpath in the sequence of subpaths.
+                <br>The calculation of the number of redirects (N) is done by the operation: "<i>floor(log2(id))+1</i>", where id corresponds to the decimal identification number.
+                <br>
+                For example, if the server changes from 3-bit identifiers to 4-bit identifiers, the subpath vector will change from ["/a", "/b", "/c"] to ["/a", "/b", "/c", "/d"] and
+                the identifier of a client (here dec. 6) changes from "011" to "0110" without changing the actual value of already written F-Cache identifiers. 
+                <br><br>This leads to the fact that only the minimum number of redirections is necessary for the attack.
+
+                <a href="/assets/diagram-scalability.png" target="_blank">
+                    <img class="diagram-image" src="/assets/diagram-scalability.svg">
+                </a>
+
+                <br>
+                <br>
+                
+                
+                The time taken for the read and write operation increases as the number of distinguishable clients and redirects does.<br><br>
                 <i>The following measured times prove to be the minimum time required for this attack to work. The actual time required in practice depends on many more factors, such as Internet speed, location, hardware setup and browser type.</i>
                 <br><br>
                 <table>
