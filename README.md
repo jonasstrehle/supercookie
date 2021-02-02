@@ -119,7 +119,7 @@ When a user visits a website, the browser checks if a favicon is needed by looki
 The browser initialy checks the local F-cache for an entry containing the URL of the active website. If a favicon entry exists, the icon will be loaded from the cache and then displayed. However, if there is no entry, for example because no favicon has ever been loaded under this particular domain, or the data in the cache is out of date, the browser makes a GET request to the server to load the site's favicon.
 
 
-### [💣 Thread Model](https://supercookie.me/workwise#content-threat-model)
+### [💣 Threat Model](https://supercookie.me/workwise#content-threat-model)
 
 In the article a possible threat model is explained that allows to assign a unique identifier to each browser in order to draw conclusions about the user and to be able to identify this user even in case of applied anti-fingerprint measures, such as the use of a VPN, deletion of cookies, deletion of the browser cache or manipulation of the client header information.
 
