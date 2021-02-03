@@ -174,7 +174,7 @@ When the website is reloaded, the web server can reconstruct the identification 
 
 ### [🎯 Target](https://supercookie.me/workwise#content-target)
 
-It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12px"> [Chrome](https://google.com/chrome/), <img src="https://www.apple.com/favicon.ico" width="12px"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12px"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.<br>
+It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12px"> [Chrome](https://google.com/chrome/), <img src="https://www.mozilla.org/favicon.ico" width="12px"> [Firefox](https://www.mozilla.org/en-US/firefox/new/), <img src="https://www.apple.com/favicon.ico" width="12px"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12px"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.<br>
 Mobile browsers are also affected.
 
 
