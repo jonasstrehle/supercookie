@@ -5,13 +5,10 @@
 </p>
 <p align="center">
   <a href="https://github.com/jonasstrehle/supercookie">
-    <img src="https://img.shields.io/github/downloads/jonasstrehle/supercookie/total.svg" alt="Total downloads">
+    <img src="https://img.shields.io/github/languages/count/jonasstrehle/supercookie" alt="Languages used">
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/jonasstrehle/supercookie">
-    <img src="https://img.shields.io/github/languages/count/jonasstrehle/supercookie" alt="Languages used">
-  </a>
   <a href="https://supercookie.me">
     <img src="https://img.shields.io/website?down_message=down&up_color=green&up_message=online&url=https%3A%2F%2Fsupercookie.me" alt="Website Status">
   </a>
@@ -221,7 +218,7 @@ Mobile browsers are also affected.
       <td><b>Firefox</b> (v 84.0)</td>
       <td align="center">✅</td>
       <td align="center">✅</td>
-      <td align="center">✅</td>
+      <td align="center">❔</td>
       <td align="center">❌</td>
       <td align="center">✅</td>
     </tr>
