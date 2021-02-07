@@ -188,48 +188,54 @@ Mobile browsers are also affected.
       <th align="center"><p>Linux</p></th>
       <th align="center"><p>iOS</p></th>
       <th align="center"><p>Android</p></th>
+      <th align="center"><i>Info</i></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><b>Chrome</b> (v 87.0)</td>
-      <td align="center">✅</td>
-      <td align="center">✅</td>
-      <td align="center">✅</td>
-      <td align="center">✅</td>
-      <td align="center">✅</td>
+        <td>Chrome <em>(v 87.0)</em></td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center"></td>
     </tr>
     <tr>
-      <td><b>Safari</b> (v 14.0)</td>
-      <td align="center">-</td>
-      <td align="center">✅</td>
-      <td align="center">-</td>
-      <td align="center">✅</td>
-      <td align="center">-</td>
+        <td>Safari <em>(v 14.0)</em></td>
+        <td align="center">-</td>
+        <td align="center">✅</td>
+        <td align="center">-</td>
+        <td align="center">✅</td>
+        <td align="center">-</td>
+        <td align="center"></td>
     </tr>
     <tr>
-      <td><b>Edge</b> (v 87.0)</td>
-      <td align="center">✅</td>
-      <td align="center">✅</td>
-      <td align="center">❌</td>
-      <td align="center">-</td>
-      <td align="center">✅</td>
+        <td>Edge <em>(v 87.0)</em></td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">❌</td>
+        <td align="center">❌</td>
+        <td align="center">✅</td>
+        <td align="center"></td>
     </tr>
     <tr>
-      <td><b>Firefox</b> (v 85.0)</td>
-      <td align="center">✅</td>
-      <td align="center">✅</td>
-      <td align="center">❌</td>
-      <td align="center">❌</td>
-      <td align="center">❌</td>
+        <td>Firefox <em>(v 85.0)</em></td>
+        <td align="center">✅</td>
+        <td align="center">✅</td>
+        <td align="center">❌</td>
+        <td align="center">❌</td>
+        <td align="center">❌</td>
+        <td>Fingerprint different in incognito mode</td>
     </tr>
     <tr>
-      <td><b>Brave</b> (v 1.19.92)</td>
-      <td align="center">❌</td>
-      <td align="center">❌</td>
-      <td align="center">❌</td>
-      <td align="center">❔</td>
-      <td align="center">❔</td>
+        <td>Brave <em>(v 1.19.92)</em></td>
+        <td align="center">❌</td>
+        <td align="center">❌</td>
+        <td align="center">❌</td>
+        <td align="center">❔</td>
+        <td align="center">❔</td>
+        <td align="center"></td>
     </tr>
   </tbody>
 </table>
@@ -246,6 +252,7 @@ Mobile browsers are also affected.
       <th align="center"><p>Linux</p></th>
       <th align="center"><p>iOS</p></th>
       <th align="center"><p>Android</p></th>
+      <th align="center"><i>Info</i></th>
     </tr>
   </thead>
   <tbody>
@@ -256,14 +263,16 @@ Mobile browsers are also affected.
       <td align="center">✅</td>
       <td align="center">✅</td>
       <td align="center">✅</td>
+      <td align="center">-</td>
     </tr>
     <tr>
-      <td><b>Firefox</b> (< v 84.0)</td>
+      <td><b>Firefox</b> (&lt; v 84.0)</td>
       <td align="center">✅</td>
       <td align="center">✅</td>
       <td align="center">❔</td>
       <td align="center">❌</td>
       <td align="center">✅</td>
+      <td align="center">-</td>
     </tr>
   </tbody>
 </table>
