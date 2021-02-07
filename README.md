@@ -4,8 +4,8 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/jonasstrehle/supercookie">
-    <img src="https://img.shields.io/github/languages/count/jonasstrehle/supercookie" alt="Languages used">
+  <a href="https://supercookie.me/workwise">
+    <img src="https://img.shields.io/badge/Docs-supercookie.me-blue" alt="Documentation">
   </a>
 </p>
 <p align="center">
