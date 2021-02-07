@@ -68,7 +68,7 @@ docker-compose up
 
 
 
-### Local machine
+### 🤖 Local machine
 **requirements**: 
 <img src="https://nodejs.org/static/images/favicons/favicon.ico" width="12px"> [Node.js](https://nodejs.org/)
 
@@ -177,6 +177,7 @@ When the website is reloaded, the web server can reconstruct the identification 
 It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12px"> [Chrome](https://google.com/chrome/), <img src="https://www.mozilla.org/favicon.ico" width="12px"> [Firefox](https://www.mozilla.org/en-US/firefox/new/), <img src="https://www.apple.com/favicon.ico" width="12px"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12px"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.<br>
 Mobile browsers are also affected.
 
+#### Current versions
 
 <table>
   <thead>
@@ -215,7 +216,49 @@ Mobile browsers are also affected.
       <td align="center">✅</td>
     </tr>
     <tr>
-      <td><b>Firefox</b> (v 84.0)</td>
+      <td><b>Firefox</b> (v 85.0)</td>
+      <td align="center">❌</td>
+      <td align="center">❌</td>
+      <td align="center">❌</td>
+      <td align="center">❌</td>
+      <td align="center">❌</td>
+    </tr>
+    <tr>
+      <td><b>Brave</b> (v 1.19.92)</td>
+      <td align="center">❌</td>
+      <td align="center">❌</td>
+      <td align="center">❌</td>
+      <td align="center">❔</td>
+      <td align="center">❔</td>
+    </tr>
+  </tbody>
+</table>
+
+
+#### Previous versions
+
+<table>
+  <thead>
+    <tr>
+      <th align="center"><p>Browser</p></th>
+      <th align="center"><p>Windows</p></th>
+      <th align="center"><p>MacOS</p></th>
+      <th align="center"><p>Linux</p></th>
+      <th align="center"><p>iOS</p></th>
+      <th align="center"><p>Android</p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Brave</b> (v 1.14.0)</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
+    </tr>
+    <tr>
+      <td><b>Firefox</b> (< v 84.0)</td>
       <td align="center">✅</td>
       <td align="center">✅</td>
       <td align="center">❔</td>
