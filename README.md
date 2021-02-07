@@ -217,8 +217,8 @@ Mobile browsers are also affected.
     </tr>
     <tr>
       <td><b>Firefox</b> (v 85.0)</td>
-      <td align="center">❌</td>
-      <td align="center">❌</td>
+      <td align="center">✅</td>
+      <td align="center">✅</td>
       <td align="center">❌</td>
       <td align="center">❌</td>
       <td align="center">❌</td>
