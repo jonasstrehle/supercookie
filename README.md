@@ -199,7 +199,7 @@ Mobile browsers are also affected.
         <td align="center">✅</td>
         <td align="center">✅</td>
         <td align="center">✅</td>
-        <td align="center"></td>
+        <td align="center">-</td>
     </tr>
     <tr>
         <td>Safari <em>(v 14.0)</em></td>
@@ -208,7 +208,7 @@ Mobile browsers are also affected.
         <td align="center">-</td>
         <td align="center">✅</td>
         <td align="center">-</td>
-        <td align="center"></td>
+        <td align="center">-</td>
     </tr>
     <tr>
         <td>Edge <em>(v 87.0)</em></td>
@@ -217,7 +217,7 @@ Mobile browsers are also affected.
         <td align="center">❌</td>
         <td align="center">❌</td>
         <td align="center">✅</td>
-        <td align="center"></td>
+        <td align="center">-</td>
     </tr>
     <tr>
         <td>Firefox <em>(v 85.0)</em></td>
@@ -235,7 +235,7 @@ Mobile browsers are also affected.
         <td align="center">❌</td>
         <td align="center">❔</td>
         <td align="center">❔</td>
-        <td align="center"></td>
+        <td align="center">-</td>
     </tr>
   </tbody>
 </table>
