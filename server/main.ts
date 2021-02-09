@@ -492,15 +492,6 @@ webserver_1.get("/workwise", (_req: express.Request, res: express.Response) => {
         url_main: WEBSERVER_DOMAIN_1
     });
 });
-webserver_1.get('*', (_req: express.Request, res: express.Response) => {
-    res.redirect('/');
-});
-webserver_2.get('*', (req: express.Request, res: express.Response) => {
-    Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
-        path: decodeURIComponent(req.path),
-        url_main: WEBSERVER_DOMAIN_1
-    });
-});
 webserver_1.get("/api", (_req: express.Request, res: express.Response) => {
     res.type("json");
     res.status(200);
@@ -510,6 +501,15 @@ webserver_1.get("/api", (_req: express.Request, res: express.Response) => {
         bits: Math.floor(Math.log2(STORAGE.index ?? 1)) + 1,
         N: N,
         maxN: maxN
+    });
+});
+webserver_1.get('*', (_req: express.Request, res: express.Response) => {
+    res.redirect('/');
+});
+webserver_2.get('*', (req: express.Request, res: express.Response) => {
+    Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
+        path: decodeURIComponent(req.path),
+        url_main: WEBSERVER_DOMAIN_1
     });
 });
 

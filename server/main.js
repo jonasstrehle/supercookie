@@ -375,15 +375,6 @@ webserver_1.get("/workwise", (_req, res) => {
         url_main: WEBSERVER_DOMAIN_1
     });
 });
-webserver_1.get('*', (_req, res) => {
-    res.redirect('/');
-});
-webserver_2.get('*', (req, res) => {
-    Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
-        path: decodeURIComponent(req.path),
-        url_main: WEBSERVER_DOMAIN_1
-    });
-});
 webserver_1.get("/api", (_req, res) => {
     res.type("json");
     res.status(200);
@@ -393,6 +384,15 @@ webserver_1.get("/api", (_req, res) => {
         bits: Math.floor(Math.log2(STORAGE.index ?? 1)) + 1,
         N: N,
         maxN: maxN
+    });
+});
+webserver_1.get('*', (_req, res) => {
+    res.redirect('/');
+});
+webserver_2.get('*', (req, res) => {
+    Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
+        path: decodeURIComponent(req.path),
+        url_main: WEBSERVER_DOMAIN_1
     });
 });
 webserver_1.listen(WEBSERVER_PORT_1, () => console.info(`express-web | Webserver-1 for '${WEBSERVER_DOMAIN_1}' running on port:`, WEBSERVER_PORT_1));
