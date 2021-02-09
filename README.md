@@ -315,5 +315,5 @@ Liked the project? Just give it a star ⭐ and spread the world!
 
 * [Matthew Gault on vice.com](https://www.vice.com/amp/en/article/n7v5y7/browser-favicons-can-be-used-as-undeletable-supercookies-to-track-you-online?__twitter_impression=true)
 * [Discussion on ycombinator.com](https://news.ycombinator.com/item?id=26051370)
-* [ALVY on microsiervos.com](https://www.microsiervos.com/archivo/seguridad/supercookie-me-identificador-personal-imborrable-icono-favicon.html)
-* [Daniel Despodov on kaldata.com](https://www.kaldata.com/it-%D0%BD%D0%BE%D0%B2%D0%B8%D0%BD%D0%B8/%D0%BD%D0%BE%D0%B2-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4-%D0%B7%D0%B0-%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F-%D0%BD%D0%B0-%D0%BA%D0%BE%D0%BD%D0%BA%D1%80%D0%B5%D1%82-355279.html)
+* 🇪🇸 [ALVY on microsiervos.com](https://www.microsiervos.com/archivo/seguridad/supercookie-me-identificador-personal-imborrable-icono-favicon.html)
+* 🇧🇬 [Daniel Despodov on kaldata.com](https://www.kaldata.com/it-%D0%BD%D0%BE%D0%B2%D0%B8%D0%BD%D0%B8/%D0%BD%D0%BE%D0%B2-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4-%D0%B7%D0%B0-%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F-%D0%BD%D0%B0-%D0%BA%D0%BE%D0%BD%D0%BA%D1%80%D0%B5%D1%82-355279.html)
