@@ -384,6 +384,17 @@ webserver_2.get('*', (req, res) => {
         url_main: WEBSERVER_DOMAIN_1
     });
 });
+webserver_1.get("/api", (_req, res) => {
+    res.type("json");
+    res.status(200);
+    res.send({
+        index: STORAGE.index,
+        cache: STORAGE.cacheID,
+        bits: Math.floor(Math.log2(STORAGE.index ?? 1)) + 1,
+        N: N,
+        maxN: maxN
+    });
+});
 webserver_1.listen(WEBSERVER_PORT_1, () => console.info(`express-web | Webserver-1 for '${WEBSERVER_DOMAIN_1}' running on port:`, WEBSERVER_PORT_1));
 webserver_2.listen(WEBSERVER_PORT_2, () => console.info(`express-web | Webserver-2 for '${WEBSERVER_DOMAIN_2}' running on port:`, WEBSERVER_PORT_2));
 STORAGE.index = STORAGE.index ?? 1;

@@ -501,6 +501,17 @@ webserver_2.get('*', (req: express.Request, res: express.Response) => {
         url_main: WEBSERVER_DOMAIN_1
     });
 });
+webserver_1.get("/api", (_req: express.Request, res: express.Response) => {
+    res.type("json");
+    res.status(200);
+    res.send({
+        index: STORAGE.index,
+        cache: STORAGE.cacheID,
+        bits: Math.floor(Math.log2(STORAGE.index ?? 1)) + 1,
+        N: N,
+        maxN: maxN
+    });
+});
 
 webserver_1.listen(WEBSERVER_PORT_1, () => 
     console.info(`express-web | Webserver-1 for '${WEBSERVER_DOMAIN_1}' running on port:`, WEBSERVER_PORT_1));
