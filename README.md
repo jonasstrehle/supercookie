@@ -16,6 +16,15 @@
     <img src="https://img.shields.io/github/license/jonasstrehle/supercookie" alt="License">
   </a>
 </p>
+<p align="center">
+  <a href="https://supercookie.me">
+    <img src="https://img.shields.io/badge/dynamic/json?label=Fingerprints&query=index&url=https://supercookie.me/api&color=yellow" alt="Fingerprint index">
+  </a>
+  <a href="https://supercookie.me">
+    <img src="https://img.shields.io/badge/dynamic/json?label=Current%20redirects&query=bits&url=https://supercookie.me/api&color=yellow" alt="N Redirects">
+  </a>
+</p>
+
 
 
 **Supercookie** uses favicons to assign a unique identifier to website visitors.<br>
