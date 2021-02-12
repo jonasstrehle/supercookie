@@ -315,6 +315,7 @@ Liked the project? Just give it a star ⭐ and spread the world!
 
 * [Matthew Gault on vice.com](https://www.vice.com/amp/en/article/n7v5y7/browser-favicons-can-be-used-as-undeletable-supercookies-to-track-you-online?__twitter_impression=true)
 * [Rhett Jones on gizmodo.com](https://gizmodo.com/favicons-could-be-the-supercookie-that-tracks-you-every-1846229089/)
+* [Dev Kundaliyaon on computing.co.uk](https://www.computing.co.uk/news/4027035/tiny-favicons-utilised-track-users-movements-online)
 * [Barclay Ballard on techradar.com](https://www.techradar.com/news/these-tiny-icons-could-be-tracking-you-across-the-internet)
 * [Discussion on ycombinator.com](https://news.ycombinator.com/item?id=26051370)
 * 🇪🇸 [ALVY on microsiervos.com](https://www.microsiervos.com/archivo/seguridad/supercookie-me-identificador-personal-imborrable-icono-favicon.html)
