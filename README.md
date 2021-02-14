@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://supercookie.me">
-    <img src="http://supercookie.me/favicon.ico" alt="supercookie" width="100px" />
+    <img src="http://supercookie.me/favicon.ico" alt="supercookie" width="100" />
   </a>
 </p>
 <p align="center">
@@ -39,7 +39,7 @@ The tracking method works even in the browser's incognito mode and is not cleare
 - Paper by Scientists at University of Illinois, Chicago: ~[www.cs.uic.edu](https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf)~
 - Article by heise: [heise.de](https://heise.de/-5027814) 
 
-### 🪧 Purpose
+### <img alt="🪧" width="27" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/apple/271/placard_1faa7.png"> Purpose
 
 This repository is for **educational** and **demonstration purposes** only!
 
@@ -51,7 +51,7 @@ The demo of "supercookie" as well as the publication of the source code of this 
 
 ### 🔧 Docker
 **requirements**: 
-<img src="https://docs.docker.com/favicon.ico" width="12px"> [Docker daemon](https://docs.docker.com/get-docker/)
+<img src="https://docs.docker.com/favicon.ico" width="12"> [Docker daemon](https://docs.docker.com/get-docker/)
 
 1. Clone repository
 ```bash
@@ -79,7 +79,7 @@ docker-compose up
 
 ### 🤖 Local machine
 **requirements**: 
-<img src="https://nodejs.org/static/images/favicons/favicon.ico" width="12px"> [Node.js](https://nodejs.org/)
+<img src="https://nodejs.org/static/images/favicons/favicon.ico" width="12"> [Node.js](https://nodejs.org/)
 
 1. Clone repository
 ```bash
@@ -139,7 +139,7 @@ When the website is reloaded, the web server can reconstruct the identification 
 
 <p align="center">
   <a href="https://supercookie.me">
-    <img src="https://supercookie.me/assets/header.png" alt="Supercookie Header" width="600px" />
+    <img src="https://supercookie.me/assets/header.png" alt="Supercookie Header" width="600" />
   </a>
 </p>
 
@@ -183,7 +183,7 @@ When the website is reloaded, the web server can reconstruct the identification 
 
 ### [🎯 Target](https://supercookie.me/workwise#content-target)
 
-It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12px"> [Chrome](https://google.com/chrome/), <img src="https://www.mozilla.org/favicon.ico" width="12px"> [Firefox](https://www.mozilla.org/en-US/firefox/new/), <img src="https://www.apple.com/favicon.ico" width="12px"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12px"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.<br>
+It looks like all top browsers (<img src="https://www.google.com/favicon.ico" width="12"> [Chrome](https://google.com/chrome/), <img src="https://www.mozilla.org/favicon.ico" width="12"> [Firefox](https://www.mozilla.org/en-US/firefox/new/), <img src="https://www.apple.com/favicon.ico" width="12"> [Safari](https://www.apple.com/safari/), <img src="https://www.microsoft.com/favicon.ico" width="12"> [Edge](https://www.microsoft.com/edge/)) are vulnerable to this attack scenario.<br>
 Mobile browsers are also affected.
 
 #### Current versions
