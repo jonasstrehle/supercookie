@@ -229,13 +229,12 @@ Mobile browsers are also affected.
         <td>-</td>
     </tr>
     <tr>
-        <td>Firefox <em>(v 85.0)</em></td>
-        <td align="center">✅</td>
-        <td align="center">✅</td>
+        <td>Firefox <em>(v 86.0)</em></td>
         <td align="center">❌</td>
         <td align="center">❌</td>
         <td align="center">❌</td>
-        <td>Fingerprint different in incognito mode</td>
+        <td align="center">❌</td>
+        <td align="center">❌</td>
     </tr>
     <tr>
         <td>Brave <em>(v 1.19.92)</em></td>
