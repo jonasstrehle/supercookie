@@ -229,7 +229,7 @@ Mobile browsers are also affected.
         <td>-</td>
     </tr>
     <tr>
-        <td>Firefox <em>(v 85.0)</em></td>
+        <td>Firefox <em>(v 86.0)</em></td>
         <td align="center">✅</td>
         <td align="center">✅</td>
         <td align="center">❌</td>
