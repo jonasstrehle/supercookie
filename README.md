@@ -36,7 +36,7 @@ The tracking method works even in the browser's incognito mode and is not cleare
 
 ### 💭 Inspiration
 
-- Paper by Scientists at University of Illinois, Chicago: [www.cs.uic.edu](http://web.archive.org/web/20210210122008/https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf)
+- Paper by Scientists at University of Illinois, Chicago: [www.cs.uic.edu](https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf)
 - Article by heise: [heise.de](https://heise.de/-5027814) 
 
 ### <img alt="🪧" width="27" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/apple/271/placard_1faa7.png"> Purpose
@@ -327,3 +327,4 @@ Liked the project? Just give it a star ⭐ and spread the world!
 * 🇨🇳 [study875 on cnbeta.com](https://www.cnbeta.com/articles/tech/1089095.htm)
 * 🇷🇺 [ITSumma on habr.com](https://habr.com/ru/company/itsumma/blog/542734/)
 * 🇷🇺 [securitylab.ru](https://www.securitylab.ru/news/516436.php)
+* <img src="https://youtube.com/favicon.ico" width="20"> [Seytonic on YouTube](https://youtu.be/X7OW5hTt5hY)
