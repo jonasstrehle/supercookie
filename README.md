@@ -313,6 +313,7 @@ This repository, including the setup of a demonstration portal, was created with
 
 Liked the project? Just give it a star ⭐ and spread the world!
 
+* [Bruce Schneier on schneier.com](https://www.schneier.com/crypto-gram/archives/2021/0315.html#cg5)
 * [Matthew Gault on vice.com](https://www.vice.com/amp/en/article/n7v5y7/browser-favicons-can-be-used-as-undeletable-supercookies-to-track-you-online?__twitter_impression=true)
 * [Rhett Jones on gizmodo.com](https://gizmodo.com/favicons-could-be-the-supercookie-that-tracks-you-every-1846229089/)
 * [Dev Kundaliyaon on computing.co.uk](https://www.computing.co.uk/news/4027035/tiny-favicons-utilised-track-users-movements-online)
