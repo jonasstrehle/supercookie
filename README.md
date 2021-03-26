@@ -296,6 +296,24 @@ The time taken for the read and write operation increases as the number of disti
 In order to keep the number of redirects as minimal as possible, N can have a dynamic length. 
 More about this [here](https://supercookie.me/workwise#content-scalability-performance).
 
+### [📌How to defend against?](https://supercookie.me/workwise)
+
+The most straightforward solution is to disable the favicon cache completely. As long as the browser vendors do not provide a feature against this vulnerability it's probably the best way to clear the F-cache.
+
+* [Chrome](https://www.google.com/chrome/) • **MacOS**<br>
+  - Delete `~/Library/Application Support/Google/Chrome/Default/Favicons`
+  - Delete `~/Library/Application Support/Google/Chrome/Default/Favicons-journal`
+
+* [Chrome](https://www.google.com/chrome/) • **Windows**<br>
+  - Delete `C:\Users\username\AppData\Local\Google\Chrome\User Data\Default`
+
+* [Safari](https://www.apple.com/safari/) • **MacOS**<br>
+  - Delete content of `~/Library/Safari/Favicon Cache`
+
+* [Edge](https://www.microsoft.com/edge) • **MacOS**<br>
+  - Delete `~/Library/Application Support/Microsoft Edge/Default/Favicon`
+  - Delete `~/Library/Application Support/Microsoft Edge/Default/Favicons-journal`
+
 ## Other
 
 ### [🙎‍♂️ About me](https://jonas.strehles.info)
