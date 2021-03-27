@@ -98,7 +98,7 @@ PORT_DEMO=10081
 3. Run service
 ```bash
 cd supercookie/server
-node main.js
+node --experimental-json-modules main.js
 ```
 
 -> Webserver will be running at http://localhost:10080
