@@ -1,4 +1,3 @@
-
 <p align="center">
   <a href="https://supercookie.me">
     <img src="http://supercookie.me/favicon.ico" alt="supercookie" width="100" />
