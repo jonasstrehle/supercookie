@@ -26,7 +26,6 @@
 </p>
 
 
-
 **Supercookie** uses favicons to assign a unique identifier to website visitors.<br>
 Unlike traditional tracking methods, this ID can be stored almost persistently and cannot be easily cleared by the user.
 
