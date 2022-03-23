@@ -91,7 +91,7 @@ let Webserver = (() => {
         }
         static getIdentifier(vector, size = vector.size) {
             return parseInt(this.routes.map((route) => vector.has(route) ? 0 : 1)
-                .join('').substr(0, size).split('').reverse().join(''), 2);
+                .join('').slice(0, size).split('').reverse().join(''), 2);
         }
         static hasRoute(route) {
             return this.routes.includes(route);

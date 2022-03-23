@@ -137,7 +137,7 @@ class Webserver {
     }
     public static getIdentifier(vector: Set<string>, size: number = vector.size): number {
         return parseInt(this.routes.map((route: string) => vector.has(route) ? 0 : 1)
-            .join('').substr(0, size).split('').reverse().join(''), 2);
+            .join('').slice(0, size).split('').reverse().join(''), 2);
     }
     public static hasRoute(route: string): boolean {
         return this.routes.includes(route);
