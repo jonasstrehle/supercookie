@@ -29,7 +29,7 @@
         <script>
             console.info(`{{index}} • bit v1`, JSON.parse("{{bit}}"));
 
-            window.addEventListener("load", () => {
+            window.addEventListener("DOMContentLoaded", () => {
                 setTimeout(()=>{
                     document.location.href = `${document.location.origin}/{{referrer}}`;
                 }, +"{{delay}}");
