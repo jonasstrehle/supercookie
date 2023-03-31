@@ -201,11 +201,11 @@ Mobile browsers are also affected.
   </thead>
   <tbody>
     <tr>
-        <td>Chrome <em>(v 87.0)</em></td>
+        <td>Chrome <em>(v 111.0)</em></td>
         <td align="center">✅</td>
         <td align="center">✅</td>
         <td align="center">✅</td>
-        <td align="center">✅</td>
+        <td align="center">?</td>
         <td align="center">✅</td>
         <td>-</td>
     </tr>
