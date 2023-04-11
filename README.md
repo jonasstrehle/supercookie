@@ -38,7 +38,7 @@ The tracking method works even in the browser's incognito mode and is not cleare
 - Paper by Scientists at University of Illinois, Chicago: [www.cs.uic.edu](https://www.cs.uic.edu/~polakis/papers/solomos-ndss21.pdf)
 - Article by heise: [heise.de](https://heise.de/-5027814) 
 
-### <img alt="🪧" width="27" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/60/apple/271/placard_1faa7.png"> Purpose
+### 🌱 Purpose
 
 This repository is for **educational** and **demonstration purposes** only!
 
@@ -50,7 +50,7 @@ The demo of "supercookie" as well as the publication of the source code of this 
 
 ### 🔧 Docker
 **requirements**: 
-<img src="https://docs.docker.com/favicon.ico" width="12"> [Docker daemon](https://docs.docker.com/get-docker/)
+<img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" width="12"> [Docker daemon](https://docs.docker.com/get-docker/)
 
 1. Clone repository
 ```bash
@@ -78,7 +78,7 @@ docker-compose up
 
 ### 🤖 Local machine
 **requirements**: 
-<img src="https://nodejs.org/static/images/favicons/favicon.ico" width="12"> [Node.js](https://nodejs.org/)
+<img src="https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png" width="12"> [Node.js](https://nodejs.org/)
 
 1. Clone repository
 ```bash
