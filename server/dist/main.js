@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import crypto from "crypto";
 import cors from "cors";
 import dotenv from "dotenv";
+dotenv.config();
 const generateUUID = (pattern = "xxxx-xxxx-xxxx-xxxx-xxxx", charset = "abcdefghijklmnopqrstuvwxyz0123456789") => pattern.replace(/[x]/g, () => charset[Math.floor(Math.random() * charset.length)]);
 const hashNumber = (value) => crypto.createHash("MD5")
     .update(value.toString())
@@ -19,9 +20,10 @@ const createRoutes = (base, count) => {
     return array;
 };
 class Storage {
+    _path = path.join(path.resolve(), "data.json");
+    _content = {};
+    _contentProxy;
     constructor() {
-        this._path = path.join(path.resolve(), "data.json");
-        this._content = {};
         if (!this.existsPersistent())
             this.createPersistent();
         this.read();
@@ -66,8 +68,8 @@ const STORAGE = new Storage().content;
 dotenv.config();
 const WEBSERVER_DOMAIN_1 = process.env["HOST_MAIN"] ?? "localhost:10080";
 const WEBSERVER_DOMAIN_2 = process.env["HOST_DEMO"] ?? "localhost:10081";
-const WEBSERVER_PORT_1 = +process.env["PORT_MAIN"] ?? 10080;
-const WEBSERVER_PORT_2 = +process.env["PORT_DEMO"] ?? 10081;
+const WEBSERVER_PORT_1 = parseInt(process.env["PORT_MAIN"] ?? "10080", 10);
+const WEBSERVER_PORT_2 = parseInt(process.env["PORT_DEMO"] ?? "10081", 10);
 const CACHE_IDENTIFIER = STORAGE.cacheID ?? generateUUID("xxxxxxxx", "0123456789abcdef");
 const N = 32;
 const FILE = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";
@@ -78,121 +80,117 @@ webserver_1.options('*', cors());
 webserver_2.options('*', cors());
 console.info(`supercookie | Starting up using N=${N}, C-ID='${CACHE_IDENTIFIER}' ...`);
 console.info(`supercookie | There are ${Math.max(maxN - 1 - (STORAGE.index ?? 1), 0)}/${maxN - 1} unique identifiers left.`);
-let Webserver = (() => {
-    class Webserver {
-        static getVector(identifier) {
-            const booleanVector = (identifier >>> 0).toString(2)
-                .padStart(this.routes.length, '0').split('')
-                .map((element) => element === '1')
-                .reverse();
-            const vector = new Array();
-            booleanVector.forEach((value, index) => value ? vector.push(this.getRouteByIndex(index)) : void 0);
-            return vector;
-        }
-        static getIdentifier(vector, size = vector.size) {
-            return parseInt(this.routes.map((route) => vector.has(route) ? 0 : 1)
-                .join('').slice(0, size).split('').reverse().join(''), 2);
-        }
-        static hasRoute(route) {
-            return this.routes.includes(route);
-        }
-        static getRouteByIndex(index) {
-            return this.routes[index] ?? null;
-        }
-        static getIndexByRoute(route) {
-            return this.routes.indexOf(route) ?? null;
-        }
-        static getNextRoute(route) {
-            const index = this.routes.indexOf(route);
-            if (index === -1)
-                throw "Route is not valid.";
-            return this.getRouteByIndex(index + 1);
-        }
-        static setCookie(res, name, value, options = { httpOnly: false, expires: new Date(Date.now() + 60 * 1000) }) {
-            return res.cookie(name, value, options), res;
-        }
-        static sendFile(res, route, options = {}, type = "html") {
-            let content = fs.readFileSync(route).toString();
-            Object.keys(options).sort((a, b) => b.length - a.length).forEach((key) => {
-                content = content.replace(new RegExp(`\{\{${key}\}\}`, 'g'), (options[key]?.toString() || '')
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/"/g, "&quot;")
-                    .replace(/'/g, "&#039;"));
-            });
-            res.header({
-                "Cache-Control": "private, no-cache, no-store, must-revalidate",
-                "Expires": -1,
-                "Pragma": "no-cache"
-            });
-            res.type(type);
-            return res.send(content), res;
-        }
+class Webserver {
+    static routes = createRoutes(CACHE_IDENTIFIER, N).map((value) => `${CACHE_IDENTIFIER}:${value}`);
+    static getVector(identifier) {
+        const booleanVector = (identifier >>> 0).toString(2)
+            .padStart(this.routes.length, '0').split('')
+            .map((element) => element === '1')
+            .reverse();
+        const vector = new Array();
+        booleanVector.forEach((value, index) => value ? vector.push(this.getRouteByIndex(index)) : void 0);
+        return vector;
     }
-    Webserver.routes = createRoutes(CACHE_IDENTIFIER, N).map((value) => `${CACHE_IDENTIFIER}:${value}`);
-    return Webserver;
-})();
-let Profile = (() => {
-    class Profile {
-        constructor(uid, identifier = null) {
-            this._identifier = null;
-            this._visitedRoutes = new Set();
-            this._storageSize = -1;
-            this._uid = uid;
-            if (identifier !== null)
-                this._identifier = identifier,
-                    this._vector = Webserver.getVector(identifier);
-            Profile.list.add(this);
-        }
-        static get(uid) {
-            return this.has(uid) ?
-                Array.from(this.list).filter((profile) => profile.uid === uid)?.pop() :
-                null;
-        }
-        static has(uid) {
-            return Array.from(this.list).some((profile) => profile.uid === uid);
-        }
-        static from(uid, identifier) {
-            return !this.has(uid) ? new Profile(uid, identifier) : null;
-        }
-        destructor() {
-            Profile.list.delete(this);
-        }
-        get uid() {
-            return this._uid;
-        }
-        get vector() {
-            return this._vector;
-        }
-        get visited() {
-            return this._visitedRoutes;
-        }
-        get identifier() {
-            return this._identifier;
-        }
-        getRouteByIndex(index) {
-            return this.vector[index] ?? null;
-        }
-        _isReading() {
-            return this._identifier === null;
-        }
-        _visitRoute(route) {
-            this._visitedRoutes.add(route);
-        }
-        _calcIdentifier() {
-            return this._identifier = Webserver.getIdentifier(this._visitedRoutes, this._storageSize), this.identifier;
-        }
-        _setStorageSize(size) {
-            this._storageSize = size;
-        }
-        get storageSize() {
-            return this._storageSize;
-        }
+    static getIdentifier(vector, size = vector.size) {
+        return parseInt(this.routes.map((route) => vector.has(route) ? 0 : 1)
+            .join('').slice(0, size).split('').reverse().join(''), 2);
     }
-    Profile.list = new Set();
-    return Profile;
-})();
+    static hasRoute(route) {
+        return this.routes.includes(route);
+    }
+    static getRouteByIndex(index) {
+        return this.routes[index] ?? null;
+    }
+    static getIndexByRoute(route) {
+        return this.routes.indexOf(route) ?? null;
+    }
+    static getNextRoute(route) {
+        const index = this.routes.indexOf(route);
+        if (index === -1)
+            throw "Route is not valid.";
+        return this.getRouteByIndex(index + 1);
+    }
+    static setCookie(res, name, value, options = { httpOnly: false, expires: new Date(Date.now() + 60 * 1000) }) {
+        return res.cookie(name, value, options), res;
+    }
+    static sendFile(res, route, options = {}, type = "html") {
+        let content = fs.readFileSync(route).toString();
+        Object.keys(options).sort((a, b) => b.length - a.length).forEach((key) => {
+            content = content.replace(new RegExp(`\{\{${key}\}\}`, 'g'), (options[key]?.toString() || '')
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;"));
+        });
+        res.header({
+            "Cache-Control": "private, no-cache, no-store, must-revalidate",
+            "Expires": -1,
+            "Pragma": "no-cache"
+        });
+        res.type(type);
+        return res.send(content), res;
+    }
+}
+class Profile {
+    static list = new Set();
+    static get(uid) {
+        return this.has(uid) ?
+            Array.from(this.list).filter((profile) => profile.uid === uid)?.pop() :
+            null;
+    }
+    static has(uid) {
+        return Array.from(this.list).some((profile) => profile.uid === uid);
+    }
+    static from(uid, identifier) {
+        return !this.has(uid) ? new Profile(uid, identifier) : null;
+    }
+    _uid;
+    _vector;
+    _identifier = null;
+    _visitedRoutes = new Set();
+    _storageSize = -1;
+    constructor(uid, identifier = null) {
+        this._uid = uid;
+        if (identifier !== null)
+            this._identifier = identifier,
+                this._vector = Webserver.getVector(identifier);
+        Profile.list.add(this);
+    }
+    destructor() {
+        Profile.list.delete(this);
+    }
+    get uid() {
+        return this._uid;
+    }
+    get vector() {
+        return this._vector;
+    }
+    get visited() {
+        return this._visitedRoutes;
+    }
+    get identifier() {
+        return this._identifier;
+    }
+    getRouteByIndex(index) {
+        return this.vector[index] ?? null;
+    }
+    _isReading() {
+        return this._identifier === null;
+    }
+    _visitRoute(route) {
+        this._visitedRoutes.add(route);
+    }
+    _calcIdentifier() {
+        return this._identifier = Webserver.getIdentifier(this._visitedRoutes, this._storageSize), this.identifier;
+    }
+    _setStorageSize(size) {
+        this._storageSize = size;
+    }
+    get storageSize() {
+        return this._storageSize;
+    }
+}
 ;
 webserver_2.set("trust proxy", 1);
 webserver_2.use(cookieParser());
@@ -206,7 +204,7 @@ webserver_2.use((req, res, next) => {
 const midSet = new Set();
 const generateWriteToken = () => {
     const uuid = generateUUID();
-    setTimeout(() => midSet.delete(uuid), 1000 * 60);
+    setTimeout(() => midSet.delete(uuid), 1_000 * 60);
     return midSet.add(uuid), uuid;
 };
 const deleteWriteToken = (token) => midSet.delete(token);

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import path from "path";
 import fs from "fs";
 import cookieParser from "cookie-parser";
@@ -6,6 +6,7 @@ import crypto from "crypto";
 import cors from "cors";
 import dotenv from "dotenv";
 
+dotenv.config()
 /**
  * Creates UUID in the specified pattern's
  * form using charset
@@ -99,8 +100,8 @@ dotenv.config();
  */
 const WEBSERVER_DOMAIN_1: string    = process.env["HOST_MAIN"] ?? "localhost:10080";
 const WEBSERVER_DOMAIN_2: string    = process.env["HOST_DEMO"] ?? "localhost:10081";
-const WEBSERVER_PORT_1: number      = +process.env["PORT_MAIN"] ?? 10080;
-const WEBSERVER_PORT_2: number      = +process.env["PORT_DEMO"] ?? 10081;
+const WEBSERVER_PORT_1: number      = parseInt(process.env["PORT_MAIN"] ?? "10080", 10);
+const WEBSERVER_PORT_2: number      = parseInt(process.env["PORT_DEMO"] ?? "10081", 10);
 const CACHE_IDENTIFIER: string      = STORAGE.cacheID ?? generateUUID("xxxxxxxx", "0123456789abcdef");
 
 const N: number                     = 32; // max 2^N unique ids possible
@@ -251,7 +252,7 @@ class Profile {
 
 webserver_2.set("trust proxy", 1);
 webserver_2.use(cookieParser());
-webserver_2.use((req: express.Request, res: express.Response, next: Function) => {  
+webserver_2.use((req: Request, res: Response, next: Function) => {  
     if (new RegExp(`https?:\/\/${WEBSERVER_DOMAIN_2}`).test(req.headers.origin))
         res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
     res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
@@ -279,7 +280,7 @@ const hasWriteToken = (token: string): boolean => midSet.has(token);
  * Assuming that the data has already been written to the browser, the webserver
  * is redirecting the user to the first route.
  */
-webserver_2.get("/read", (_req: express.Request, res: express.Response) => {
+webserver_2.get("/read", (_req: Request, res: Response) => {
     const uid = generateUUID();
     console.info(`supercookie | Visitor uid='${uid}' is known • Read`);
     const profile: Profile = Profile.from(uid);
@@ -296,7 +297,7 @@ webserver_2.get("/read", (_req: express.Request, res: express.Response) => {
  * Assuming that the data has not been written to the browser, the webserver
  * is redirecting the user to the first route.
  */
-webserver_2.get("/write/:mid", (req: express.Request, res: express.Response) => {
+webserver_2.get("/write/:mid", (req: Request, res: Response) => {
     const mid = req.params.mid;
     if (!hasWriteToken(mid))
         return res.redirect('/');
@@ -316,7 +317,7 @@ webserver_2.get("/write/:mid", (req: express.Request, res: express.Response) => 
  * @description
  * Under the /t path, the user is redirected to the next possible route.
  */
-webserver_2.get("/t/:ref", (req: express.Request, res: express.Response) => {
+webserver_2.get("/t/:ref", (req: Request, res: Response) => {
     const referrer: string = req.params.ref;
     const uid: string = req.cookies.uid;
     const profile: Profile = Profile.get(uid);
@@ -356,7 +357,7 @@ webserver_2.get("/t/:ref", (req: express.Request, res: express.Response) => {
  * After finishing the reading process, the browser is redirected to the /identity route. 
  * Here, the browser is assigned the calculated identifier and displayed to the user.
  */
-webserver_2.get("/identity", (req: express.Request, res: express.Response) => {
+webserver_2.get("/identity", (req: Request, res: Response) => {
     const uid: string = req.cookies.uid;
     const profile: Profile = Profile.get(uid);
     if (profile === null)
@@ -390,7 +391,7 @@ webserver_2.get("/identity", (req: express.Request, res: express.Response) => {
  * Fixing a chrome (v 87.0) problem using javascript redirect instead of 
  * express redirect (in redirect.html)
  */
-webserver_2.get(`/${CACHE_IDENTIFIER}`, (req: express.Request, res: express.Response) => {
+webserver_2.get(`/${CACHE_IDENTIFIER}`, (req: Request, res: Response) => {
     const rid: boolean = !!req.cookies.rid;
     res.clearCookie("rid");
     if (!rid) 
@@ -407,7 +408,7 @@ webserver_2.get(`/${CACHE_IDENTIFIER}`, (req: express.Request, res: express.Resp
  * @description
  * Main route / is redirecting to /CACHE_IDENTIFIER
  */
-webserver_2.get('/', (_req: express.Request, res: express.Response) => {
+webserver_2.get('/', (_req: Request, res: Response) => {
     Webserver.setCookie(res, "rid", true);
     res.clearCookie("mid");
     res.redirect(`/${CACHE_IDENTIFIER}`);
@@ -417,7 +418,7 @@ webserver_2.get('/', (_req: express.Request, res: express.Response) => {
  * @description
  * When requesting the favicon under /l, it is excluded that a user already has valid data in the cache.
  */
-webserver_2.get("/l/:ref", (_req: express.Request, res: express.Response) => {
+webserver_2.get("/l/:ref", (_req: Request, res: Response) => {
     console.info(`supercookie | Unknown visitor detected.`);
     Webserver.setCookie(res, "mid", generateWriteToken());
     const data = Buffer.from(FILE, "base64");
@@ -431,7 +432,7 @@ webserver_2.get("/l/:ref", (_req: express.Request, res: express.Response) => {
 });
 
 
-webserver_2.get("/i/:ref", (req: express.Request, res: express.Response) => {
+webserver_2.get("/i/:ref", (req: Request, res: Response) => {
     const data = Buffer.from(FILE, "base64");
     res.writeHead(200, {
         "Cache-Control": "public, max-age=31536000",
@@ -447,7 +448,7 @@ webserver_2.get("/i/:ref", (req: express.Request, res: express.Response) => {
  * In write mode, some icons are delivered and other requests are aborted. 
  * In read mode every request fails to not corrupt the cache.
  */
-webserver_2.get("/f/:ref", (req: express.Request, res: express.Response) => {
+webserver_2.get("/f/:ref", (req: Request, res: Response) => {
     const referrer: string = req.params.ref;
     const uid: string = req.cookies.uid;
     if (!Profile.has(uid) || !Webserver.hasRoute(referrer))
@@ -476,23 +477,23 @@ webserver_2.get("/f/:ref", (req: express.Request, res: express.Response) => {
 
 webserver_1.use("/assets", express.static(path.join(path.resolve(), "www/assets"), { index: false }));
 webserver_2.use("/assets", express.static(path.join(path.resolve(), "www/assets"), { index: false }));
-webserver_1.get('/', (_req: express.Request, res: express.Response) => {
+webserver_1.get('/', (_req: Request, res: Response) => {
     Webserver.sendFile(res, path.join(path.resolve(), "www/index.html"), {
         url_demo: WEBSERVER_DOMAIN_2
     });
 });
-webserver_1.get("/favicon.ico", (_req: express.Request, res: express.Response) => {
+webserver_1.get("/favicon.ico", (_req: Request, res: Response) => {
     res.sendFile(path.join(path.resolve(), "www/favicon.ico"));
 });
-webserver_2.get("/favicon.ico", (_req: express.Request, res: express.Response) => {
+webserver_2.get("/favicon.ico", (_req: Request, res: Response) => {
     res.sendFile(path.join(path.resolve(), "www/favicon.ico"));
 });
-webserver_1.get("/workwise", (_req: express.Request, res: express.Response) => {
+webserver_1.get("/workwise", (_req: Request, res: Response) => {
     Webserver.sendFile(res, path.join(path.resolve(), "www/workwise.html"), {
         url_main: WEBSERVER_DOMAIN_1
     });
 });
-webserver_1.get("/api", (_req: express.Request, res: express.Response) => {
+webserver_1.get("/api", (_req: Request, res: Response) => {
     res.type("json");
     res.status(200);
     res.send({
@@ -503,10 +504,12 @@ webserver_1.get("/api", (_req: express.Request, res: express.Response) => {
         maxN: maxN
     });
 });
-webserver_1.get('*', (_req: express.Request, res: express.Response) => {
+
+webserver_1.get('*', (_req: Request, res: Response) => {
     res.redirect('/');
 });
-webserver_2.get('*', (req: express.Request, res: express.Response) => {
+
+webserver_2.get('*', (req: Request, res: Response) => {
     Webserver.sendFile(res, path.join(path.resolve(), "www/404.html"), {
         path: decodeURIComponent(req.path),
         url_main: WEBSERVER_DOMAIN_1
