@@ -1,5 +1,11 @@
 {
   "type": "module",
+  "scripts": {
+    "build": "npx tsc -b",
+    "start": "node dist/main.js",
+    "dev": "npx nodemon --watch src --ext ts --exec \"node --loader ts-node/esm src/main.ts\"",
+    "test": "npx tsc -b && node ./dist/main.js"
+  },
   "dependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.9",
@@ -7,6 +13,12 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "server": "^1.0.42",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.130"
   }
 }

@@ -1,0 +1,16 @@
+services:
+  supercookie-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    env_file:
+      - .env
+      - .env.localhost
+    ports:
+      - "${PORT_MAIN:-10080}:${PORT_MAIN:-10080}"
+      - "${PORT_DEMO:-10081}:${PORT_DEMO:-10081}"
+    volumes:
+      - .:/app            
+      - /app/node_modules 
+    command: ["npm", "run", "dev"]

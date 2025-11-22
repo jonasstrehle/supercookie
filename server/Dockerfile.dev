@@ -1,0 +1,21 @@
+#--------- Development Environment -------
+FROM node:22-alpine AS build
+WORKDIR /app
+
+COPY ./package*.json ./
+COPY ./tsconfig.json ./
+
+RUN npm install
+RUN npm install -g nodemon
+
+COPY . .
+
+RUN npm run build
+
+EXPOSE 10080 10081
+
+RUN addgroup -S cookie && adduser -S cookie-guy -G cookie
+RUN chown -R cookie-guy:cookie /app
+USER cookie-guy
+
+CMD [ "npm","run","dev" ]

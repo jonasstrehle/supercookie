@@ -12,6 +12,10 @@
             "esnext.array",
             "esnext",
             "dom"
-        ]
-    }
+        ],
+        "rootDir": "./src",
+        "outDir": "./dist"
+    },
+    "include": ["src"],
+    "exclude": ["dist"]
   }
